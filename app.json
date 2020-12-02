@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Homerooom",
+    "slug": "Homerooom",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/Assets/icon.png",
+    "splash": {
+      "image": "./src/Assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "backgroundColor": "#FFFFFF"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/Assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./src/Assets/favicon.png"
+    }
+  }
+}
