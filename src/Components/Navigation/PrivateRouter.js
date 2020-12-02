@@ -7,6 +7,7 @@ import IconSearch from '../../Assets/icons/IconSearch';
 import IconPerson from '../../Assets/icons/IconPerson';
 import IconPlus from '../../Assets/icons/IconPlus';
 import Center from "../Center/Center";
+import { DarkColors } from "../../Constants/Colors";
 
 const Tabs = AnimatedTabBarNavigator();
 
@@ -23,7 +24,8 @@ const PrivateRouter = () => {
         activeTabBackgrounds: '#3DD598',
         activeColors: '#FFFFFF',
         shadow: true,
-        whenActiveShow: 'icon-only'
+        whenActiveShow: 'icon-only',
+        tabBarBackground: DarkColors['secondary'],
       }}
     >
       <Tabs.Screen

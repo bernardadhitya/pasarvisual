@@ -1,12 +1,12 @@
-export const Colors = {
-  red: '#EF5B54',
-  yellow: '#FDD444',
-  green: '#9DCB37',
-  aqua: '#99E1DD',
-  blue: '#63C7FD',
-  lightRed: '#FFE9E5',
-  lightYellow: '#FFF4CD',
-  lightGreen: '#F2FFD7',
-  lightAqua: '#F2FFD7',
-  lightBlue: '#BDE7FD'
+export const DarkColors = {
+  'primary': '#3ED598',
+  'secondary': '#286053',
+  'sub-primary': '#30444E',
+  'sub-secondary': '#1A282F',
+  'text-primary': '#FFFFFF',
+  'text-secondary': '#96A7AF',
+  'background': '#21333B',
+  'blue': '#0062FF',
+  'red': '#FF575F'
 }
+
