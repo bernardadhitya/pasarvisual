@@ -8,8 +8,78 @@ import IconPerson from '../../Assets/icons/IconPerson';
 import IconPlus from '../../Assets/icons/IconPlus';
 import Center from "../Center/Center";
 import { DarkColors } from "../../Constants/Colors";
+import HomePage from "../../Containers/HomePage/HomePage";
+import DiscoverPage from "../../Containers/DiscoverPage/DiscoverPage";
+import PostPage from "../../Containers/PostPage/PostPage";
+import { createStackNavigator } from "@react-navigation/stack";
+import OthersProfilePage from "../../Containers/ProfilePage/OthersProfilePage";
+import ProfilePage from "../../Containers/ProfilePage/ProfilePage";
+import ViewServicesPage from "../../Containers/ServicesPage/ViewServicesPage";
+import EditServicesPage from "../../Containers/ServicesPage/EditServicesPage";
 
 const Tabs = AnimatedTabBarNavigator();
+const Stack = createStackNavigator();
+
+const HomeRouter = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomePage}
+      />
+      <Stack.Screen
+        name="OtherProfileScreen"
+        component={OthersProfilePage}
+      />
+      <Stack.Screen
+        name="ViewServicesScreen"
+        component={ViewServicesPage}
+      />
+    </Stack.Navigator>
+  )
+}
+
+const DiscoverRouter = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="DiscoverScreen"
+        component={DiscoverPage}
+      />
+      <Stack.Screen
+        name="OtherProfileScreen"
+        component={OthersProfilePage}
+      />
+    </Stack.Navigator>
+  )
+}
+
+const ProfileRouter = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="ProfileScreen"
+        component={ProfilePage}
+      />
+      <Stack.Screen
+        name="EditServicesScreen"
+        component={EditServicesPage}
+      />
+    </Stack.Navigator>
+  )
+}
 
 const PrivateRouter = () => {
 
@@ -19,18 +89,17 @@ const PrivateRouter = () => {
         activeTintColor: "tomato",
         inactiveTintColor: "#323232"
       }}
-
       appearence={{
         activeTabBackgrounds: '#3DD598',
         activeColors: '#FFFFFF',
         shadow: true,
         whenActiveShow: 'icon-only',
-        tabBarBackground: DarkColors['secondary'],
+        tabBarBackground: DarkColors['sub-primary'],
       }}
     >
       <Tabs.Screen
-        name="Home"
-        component={BoilerplateComponent}
+        name="HomeTab"
+        component={HomeRouter}
         options={{ tabBarIcon: ({ focused, color }) => (
           <IconHome
             color={focused ? color : "#96A7AF"}
@@ -39,8 +108,8 @@ const PrivateRouter = () => {
         ) }}
       />
       <Tabs.Screen
-        name="Discover"
-        component={BoilerplateComponent}
+        name="DiscoverTab"
+        component={DiscoverRouter}
         options={{ tabBarIcon: ({ focused, color }) => (
           <IconSearch
             color={focused ? color : "#96A7AF"}
@@ -49,8 +118,8 @@ const PrivateRouter = () => {
         ) }}
       />
       <Tabs.Screen
-        name="Post"
-        component={BoilerplateComponent}
+        name="PostTab"
+        component={PostPage}
         options={{ tabBarIcon: ({ focused, color }) => (
           <IconPlus
             color={focused ? color : "#96A7AF"}
@@ -59,7 +128,7 @@ const PrivateRouter = () => {
         ) }}
       />
       <Tabs.Screen
-        name="Chat"
+        name="ChatTab"
         component={BoilerplateComponent}
         options={{ tabBarIcon: ({ focused, color }) => (
           <IconMessage
@@ -69,8 +138,8 @@ const PrivateRouter = () => {
         ) }}
       />
       <Tabs.Screen
-        name="Profile"
-        component={BoilerplateComponent}
+        name="ProfileTab"
+        component={ProfileRouter}
         
         options={{ tabBarIcon: ({ focused, color }) => (
           <IconPerson
