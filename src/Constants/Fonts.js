@@ -10,4 +10,10 @@ export const Fonts = {
   'MediumItalic': require('../Assets/fonts/SF-Pro-Display-MediumItalic.otf'),
   'Regular': require('../Assets/fonts/SF-Pro-Display-Regular.otf'),
   'RegularItalic': require('../Assets/fonts/SF-Pro-Display-RegularItalic.otf'),
+  'Semibold': require('../Assets/fonts/SF-Pro-Display-Semibold.otf'),
+  'SemiboldItalic': require('../Assets/fonts/SF-Pro-Display-SemiboldItalic.otf'),
+  'Thin': require('../Assets/fonts/SF-Pro-Display-Thin.otf'),
+  'ThinItalic': require('../Assets/fonts/SF-Pro-Display-ThinItalic.otf'),
+  'UltraLight': require('../Assets/fonts/SF-Pro-Display-Ultralight.otf'),
+  'UltralightItalic': require('../Assets/fonts/SF-Pro-Display-UltralightItalic.otf'),
 }
