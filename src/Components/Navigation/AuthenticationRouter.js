@@ -9,6 +9,10 @@ import { AppLoading } from 'expo';
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { Input } from "@ui-kitten/components";
+import { DarkColors } from "../../Constants/Colors";
+import PageOne from "../../Containers/RegisterPage/PageOne";
+import PageTwo from "../../Containers/RegisterPage/PageTwo";
+import PageThree from "../../Containers/RegisterPage/PageThree";
 
 const Stack = createStackNavigator();
 
@@ -29,15 +33,28 @@ const Login = () => {
   }
 
   return fontsLoaded ? (
-    <View style={styles.center}>
+    <View style={{
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: DarkColors.background
+    }}>
       <View style={{width: 300}}>
         <Input
+          style={{
+            backgroundColor: DarkColors["sub-tertiary"],
+            borderColor: DarkColors["sub-tertiary"]
+          }}
           value={email}
           label='Email'
           placeholder='Place your email'
           onChangeText={nextValue => setEmail(nextValue)}
         />
         <Input
+          style={{
+            backgroundColor: DarkColors["sub-tertiary"],
+            borderColor: DarkColors["sub-tertiary"]
+          }}
           value={password}
           label='Password'
           placeholder='Place your Text'
@@ -46,22 +63,45 @@ const Login = () => {
         />
       </View>
       <View style={{height: 30}}></View>
-      <TouchableOpacity style={styles.loginButton} onPress={() => {checkLogin()}}>
+      <TouchableOpacity
+        style={{
+          backgroundColor: DarkColors.primary,
+          marginVertical: 4,
+          width: 277,
+          borderRadius: 10,
+          paddingHorizontal: 10,
+          paddingTop: 10,
+          paddingBottom: 10,
+          alignItems: 'center'
+        }}
+        onPress={() => {checkLogin()}}
+      >
         <Text
           style={{
             fontFamily: 'Bold',
             fontSize: 16,
-            color: '#FFFFFF'
+            color: DarkColors["text-primary"]
           }}
         >
           Login
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => {navigation.navigate('Register')}}
+        style={{
+          backgroundColor: DarkColors["secondary"],
+          marginVertical: 4,
+          width: 277,
+          borderRadius: 10,
+          paddingHorizontal: 10,
+          paddingTop: 10,
+          paddingBottom: 10,
+          alignItems: 'center'
+        }}
+        onPress={() => {navigation.navigate('PageOne')}}
       >
-        <Text style={{fontFamily: 'Medium', fontSize: 16, color: '#63C7FD'}}>
+        <Text style={{
+          fontFamily: 'Medium', fontSize: 16, color: DarkColors['primary']
+        }}>
           Don't have account, sign me up!
         </Text>
       </TouchableOpacity>
@@ -106,6 +146,27 @@ const AuthenticationRouter = () => {
         name="Register"
         component={Register}
       />
+      <Stack.Screen
+        options={{
+          headerTitle: "PageOne"
+        }}
+        name="PageOne"
+        component={PageOne}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "PageTwo"
+        }}
+        name="PageTwo"
+        component={PageTwo}
+      />
+      <Stack.Screen
+        options={{
+          headerTitle: "PageThree"
+        }}
+        name="PageThree"
+        component={PageThree}
+      />
     </Stack.Navigator>
   );
 };
@@ -128,7 +189,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: '#E5FCFB'
   },
   button: {
     marginVertical: 4,
@@ -148,8 +208,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   loginButton: {
-    marginVertical: 4,
-    width: 277,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -157,6 +215,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
+    marginVertical: 4,
+    width: 277,
     backgroundColor: '#63C7FD',
     borderRadius: 10,
     paddingHorizontal: 10,
