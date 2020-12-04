@@ -16,6 +16,7 @@ import OthersProfilePage from "../../Containers/ProfilePage/OthersProfilePage";
 import ProfilePage from "../../Containers/ProfilePage/ProfilePage";
 import ViewServicesPage from "../../Containers/ServicesPage/ViewServicesPage";
 import EditServicesPage from "../../Containers/ServicesPage/EditServicesPage";
+import MessagePage from "../../Containers/MessagePage/MessagePage";
 
 const Tabs = AnimatedTabBarNavigator();
 const Stack = createStackNavigator();
@@ -128,8 +129,8 @@ const PrivateRouter = () => {
         ) }}
       />
       <Tabs.Screen
-        name="ChatTab"
-        component={BoilerplateComponent}
+        name="MessageTab"
+        component={MessagePage}
         options={{ tabBarIcon: ({ focused, color }) => (
           <IconMessage
             color={focused ? color : "#96A7AF"}
