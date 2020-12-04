@@ -13,6 +13,7 @@ import { DarkColors } from '../../Constants/Colors';
 import ButtonBack from '../../Assets/buttons/ButtonBack';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import IconSetting from '../../Assets/icons/IconSetting';
 
 const ProfilePage = () => {
   const navigation = useNavigation();
@@ -73,6 +74,11 @@ const ProfilePage = () => {
           borderRadius={16}
         />
         <ScrollView style={{paddingHorizontal: 20, paddingTop: 50}}>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <TouchableOpacity onPress={() => navigation.navigate('ProfileSettingScreen')}>
+              <IconSetting/>
+            </TouchableOpacity>
+          </View>
           <ProfilePanel isSelf handleClick={() => sheetRef.current.snapTo(1)}/>
         </ScrollView>
         {renderShadow()}

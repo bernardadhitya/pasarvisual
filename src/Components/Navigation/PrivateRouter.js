@@ -18,6 +18,7 @@ import ViewServicesPage from "../../Containers/ServicesPage/ViewServicesPage";
 import EditServicesPage from "../../Containers/ServicesPage/EditServicesPage";
 import MessagePage from "../../Containers/MessagePage/MessagePage";
 import ChatPage from "../../Containers/MessagePage/ChatPage";
+import ProfileSettingPage from "../../Containers/ProfilePage/ProfileSettingPage";
 
 const Tabs = AnimatedTabBarNavigator();
 const Stack = createStackNavigator();
@@ -78,6 +79,10 @@ const ProfileRouter = () => {
       <Stack.Screen
         name="EditServicesScreen"
         component={EditServicesPage}
+      />
+      <Stack.Screen
+        name="ProfileSettingScreen"
+        component={ProfileSettingPage}
       />
     </Stack.Navigator>
   )
