@@ -6,40 +6,42 @@ import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
 import ChatCard from './ChatCard';
 import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const ChatPanel = () => {
+  const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
   return fontsLoaded ? (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
         <ChatCard/>
       </TouchableOpacity>
     </View>
