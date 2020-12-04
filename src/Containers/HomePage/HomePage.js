@@ -10,13 +10,20 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 import { useMemoOne } from 'use-memo-one';
 import CreativePostDetail from '../../Components/PostPanel/CreativePostDetail';
+import { useNavigation } from '@react-navigation/native';
 
 
 const HomePage = () => {
+  const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
   let sheetRef = useRef(null);
   let fall = useMemoOne(() => new Animated.Value(1), []);
+
+  const viewProfile = () => {
+    sheetRef.current.snapTo(2);
+    navigation.navigate('OtherProfileScreen');
+  }
 
   const renderContent = () => {
     return (
@@ -27,7 +34,7 @@ const HomePage = () => {
           height: 700
         }}
       >
-        <CreativePostDetail role='creative'/>
+        <CreativePostDetail role='creative' handleClick={viewProfile}/>
       </View>
     )
   };

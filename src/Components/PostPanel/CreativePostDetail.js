@@ -8,9 +8,9 @@ import { DarkColors } from '../../Constants/Colors';
 
 const CreativePostDetail = (props) => {
   let [fontsLoaded] = useFonts(Fonts);
+  const { role, handleClick } = props;
 
   const renderButton = () => {
-    const { role } = props;
     return (
     <TouchableOpacity 
       onPress={() => handleClick()}
