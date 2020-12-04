@@ -6,6 +6,7 @@ import { useFonts } from '@use-expo/font';
 import { ScrollView } from 'react-native';
 import { DarkColors } from '../../Constants/Colors';
 import ChatPanel from '../../Components/MessagePanel/ChatPanel';
+import OffersPanel from '../../Components/MessagePanel/OffersPanel';
 
 const MessagePage = () => {
   const [selectedTabName, setSelectedTabName] = useState('chat');
@@ -57,9 +58,7 @@ const MessagePage = () => {
   }
 
   const renderMessagePanel = () => {
-    return (
-      <ChatPanel/>
-    )
+    return selectedTabName === 'chat' ? <ChatPanel/> : <OffersPanel/>
   }
 
   if (!fontsLoaded) {
