@@ -10,7 +10,7 @@ const ChatCard = () => {
   let [fontsLoaded] = useFonts(Fonts);
 
   return fontsLoaded ? (
-    <View style={{paddingHorizontal: 10, paddingTop: 15}}>
+    <View style={{paddingLeft: 6, paddingRight: 0, paddingTop: 15}}>
       <View style={styles.row}>
         <View styles={styles.column}>
           <View style={{
@@ -28,24 +28,76 @@ const ChatCard = () => {
           </View>
         </View>
         <View style={styles.column}>
-          <Text
-            style={{
-              color: DarkColors["text-primary"],
-              fontFamily: 'Bold',
-              fontSize: 16
-            }}
-          >
-            Name
-          </Text>
-          <Text
-            style={{
-              color: DarkColors["text-secondary"],
-              fontFamily: 'Regular',
-              fontSize: 14
-            }}
-          >
-            Lorem Ipsum dolor amet
-          </Text>
+          <View style={styles.row}>
+            <View style={styles.column}>
+              <Text
+                style={{
+                  color: DarkColors["text-primary"],
+                  fontFamily: 'Bold',
+                  fontSize: 16
+                }}
+              >
+                Name
+              </Text>
+            </View>
+            <View style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'flex-end'
+            }}>
+              <View style={{
+                paddingHorizontal: 8,
+                paddingTop: 4,
+                borderRadius: 12
+              }}>
+                <Text
+                  style={{
+                    color: DarkColors["text-primary"],
+                    fontFamily: 'Regular',
+                    fontSize: 10
+                  }}
+                >
+                  4.20 AM
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.column}>
+              <Text
+                style={{
+                  color: DarkColors["text-secondary"],
+                  fontFamily: 'Regular',
+                  fontSize: 14
+                }}
+              >
+                Lorem ipsum dolor amet
+              </Text>
+            </View>
+            <View style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'flex-end'
+            }}>
+              <View style={{
+                paddingHorizontal: 8,
+                paddingTop: 4,
+                backgroundColor: DarkColors.primary,
+                borderRadius: 12,
+                marginRight: 8
+              }}>
+                <Text
+                  style={{
+                    color: DarkColors["text-primary"],
+                    fontFamily: 'Bold',
+                    fontSize: 10
+                  }}
+                >
+                  1
+                </Text>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
       <View
