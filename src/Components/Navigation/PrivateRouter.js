@@ -17,6 +17,7 @@ import ProfilePage from "../../Containers/ProfilePage/ProfilePage";
 import ViewServicesPage from "../../Containers/ServicesPage/ViewServicesPage";
 import EditServicesPage from "../../Containers/ServicesPage/EditServicesPage";
 import MessagePage from "../../Containers/MessagePage/MessagePage";
+import ChatPage from "../../Containers/MessagePage/ChatPage";
 
 const Tabs = AnimatedTabBarNavigator();
 const Stack = createStackNavigator();
@@ -82,6 +83,25 @@ const ProfileRouter = () => {
   )
 }
 
+const MessageRouter = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen
+        name="MessageScreen"
+        component={MessagePage}
+      />
+      <Stack.Screen
+        name="ChatScreen"
+        component={ChatPage}
+      />
+    </Stack.Navigator>
+  )
+}
+
 const PrivateRouter = () => {
 
   return (
@@ -130,7 +150,7 @@ const PrivateRouter = () => {
       />
       <Tabs.Screen
         name="MessageTab"
-        component={MessagePage}
+        component={MessageRouter}
         options={{ tabBarIcon: ({ focused, color }) => (
           <IconMessage
             color={focused ? color : "#96A7AF"}
