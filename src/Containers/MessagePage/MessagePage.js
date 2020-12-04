@@ -5,6 +5,7 @@ import { AppLoading } from 'expo';
 import { useFonts } from '@use-expo/font';
 import { ScrollView } from 'react-native';
 import { DarkColors } from '../../Constants/Colors';
+import ChatPanel from '../../Components/MessagePanel/ChatPanel';
 
 const MessagePage = () => {
   const [selectedTabName, setSelectedTabName] = useState('chat');
@@ -13,7 +14,8 @@ const MessagePage = () => {
   const renderTabButtons = (tabName) => {
     return tabName === selectedTabName ?
       <View style={styles.column}>
-        <TouchableOpacity 
+        <TouchableOpacity
+          onPress={() => setSelectedTabName(tabName)} 
           style={{
             backgroundColor: DarkColors.secondary,
             justifyContent: 'center',
@@ -34,6 +36,7 @@ const MessagePage = () => {
       :
       <View style={styles.column}>
         <TouchableOpacity 
+          onPress={() => setSelectedTabName(tabName)}
           style={{
             backgroundColor: DarkColors["sub-secondary"],
             justifyContent: 'center',
@@ -53,6 +56,12 @@ const MessagePage = () => {
       </View>
   }
 
+  const renderMessagePanel = () => {
+    return (
+      <ChatPanel/>
+    )
+  }
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -69,6 +78,9 @@ const MessagePage = () => {
             <View style={{width: 10}}></View>
             {renderTabButtons('offers')}
           </View>
+          <View style={{height: 15}}></View>
+          {renderMessagePanel()}
+          <View style={{height: 100}}></View>
         </ScrollView>
       </SafeAreaView>
     )
