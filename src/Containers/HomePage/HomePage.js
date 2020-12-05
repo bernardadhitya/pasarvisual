@@ -12,11 +12,13 @@ import { useMemoOne } from 'use-memo-one';
 import CreativePostDetail from '../../Components/PostPanel/CreativePostDetail';
 import { useNavigation } from '@react-navigation/native';
 import { getAllDMPost } from '../../../firebase';
+import { TouchableOpacity } from 'react-native';
 
 
 const HomePage = () => {
   const navigation = useNavigation();
   const [posts, setPosts] = useState([]);
+  const [trigger, setTrigger] = useState(0);
   let [fontsLoaded] = useFonts(Fonts);
 
   let sheetRef = useRef(null);
@@ -34,16 +36,16 @@ const HomePage = () => {
       setPosts(fetchedAllPosts);
     }
     fetchData();
-  }, []);
+  }, [trigger]);
 
   const renderHomePosts = () => {
     return posts.map(post => {
-      const {dmImage, dmPost} = post;
-      const {title, topics, like, desc} = dmPost;
+      const {dataImage, dataPost} = post;
+      const {title, topics, like, desc} = dataPost;
       return (
         <HomeCard
           role='creative'
-          image={dmImage}
+          image={dataImage}
           handleClick={() => sheetRef.current.snapTo(1)}
           title={title}
           description={desc}
@@ -104,15 +106,19 @@ const HomePage = () => {
           borderRadius={16}
         />
         <ScrollView style={{paddingHorizontal: 20, paddingTop: 50}}>
-          <Text
-            style={{
-              color: DarkColors["text-primary"],
-              fontFamily: 'Bold',
-              fontSize: 42
-            }}
+          <TouchableOpacity
+            onPress={() => setTrigger(trigger + 1)}
           >
-            Beranda
-          </Text>
+            <Text
+              style={{
+                color: DarkColors["text-primary"],
+                fontFamily: 'Bold',
+                fontSize: 42
+              }}
+            >
+              Beranda
+            </Text>
+          </TouchableOpacity>
           { renderHomePosts() }
           <View style={{height: 100}}></View>
         </ScrollView>
