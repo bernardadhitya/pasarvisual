@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFonts } from '@use-expo/font';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { Layout } from '@ui-kitten/components';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const HomeCard = (props) => {
   const { role, image, handleClick, title, description } = props;
+  console.log('image link:', image);
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -73,12 +74,7 @@ const HomeCard = (props) => {
             marginBottom: 15
           }}
         >
-          <View style={{
-            height: 200,
-            backgroundColor: DarkColors["sub-secondary"]
-          }}>
-            
-          </View>
+          <Image source={{ uri: image }} style={{height: 200}}/>
         </TouchableOpacity>
         : null
       }

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -11,10 +11,12 @@ import Animated from 'react-native-reanimated';
 import { useMemoOne } from 'use-memo-one';
 import CreativePostDetail from '../../Components/PostPanel/CreativePostDetail';
 import { useNavigation } from '@react-navigation/native';
+import { getAllDMPost } from '../../../firebase';
 
 
 const HomePage = () => {
   const navigation = useNavigation();
+  const [posts, setPosts] = useState([]);
   let [fontsLoaded] = useFonts(Fonts);
 
   let sheetRef = useRef(null);
@@ -23,6 +25,31 @@ const HomePage = () => {
   const viewProfile = () => {
     sheetRef.current.snapTo(2);
     navigation.navigate('OtherProfileScreen');
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedAllPosts = await getAllDMPost();
+      console.log(fetchedAllPosts);
+      setPosts(fetchedAllPosts);
+    }
+    fetchData();
+  }, []);
+
+  const renderHomePosts = () => {
+    return posts.map(post => {
+      const {dmImage, dmPost} = post;
+      const {title, topics, like, desc} = dmPost;
+      return (
+        <HomeCard
+          role='creative'
+          image={dmImage}
+          handleClick={() => sheetRef.current.snapTo(1)}
+          title={title}
+          description={desc}
+        />
+      )
+    })
   }
 
   const renderContent = () => {
@@ -86,38 +113,7 @@ const HomePage = () => {
           >
             Beranda
           </Text>
-          <HomeCard
-            role='creative'
-            image='Sample image'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='Weekly progress'
-            description='Weekly progress on dieting'
-          />
-          <HomeCard
-            role='business'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='We are looking for talents'
-            description='We’re interested in your ideas and would be glad to build something bigger out of it. Share your ideas about features/design and we’ll bring them on to our full case of this product design.'
-          />
-          <HomeCard
-            role='creative'
-            image='Sample image'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='Weekly progress'
-            description='Weekly progress on dieting'
-          />
-          <HomeCard
-            role='business'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='We are looking for talents'
-            description='We’re interested in your ideas and would be glad to build something bigger out of it. Share your ideas about features/design and we’ll bring them on to our full case of this product design.'
-          />
-          <HomeCard
-            role='business'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='We are looking for talents'
-            description='We’re interested in your ideas and would be glad to build something bigger out of it. Share your ideas about features/design and we’ll bring them on to our full case of this product design.'
-          />
+          { renderHomePosts() }
           <View style={{height: 100}}></View>
         </ScrollView>
         {renderShadow()}
