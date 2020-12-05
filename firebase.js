@@ -72,12 +72,49 @@ export const getAllUmkmPost = async () => {
           result.map(async (umkmPostId) => {
               const umkmPost = await getUmkmPostById(umkmPostId)
               const umkmImage = await getSingleImageByUmkmPostId(umkmPostId)
-              return { umkmPost: umkmPost, umkmImage: umkmImage };
+              return { dataPost: umkmPost, dataImage: umkmImage };
           }));
   };
   const allPost = await getAllPost(allId);
   // console.log('allpost = ', allPost);
   return allPost;
+}
+
+export const getUmkmPostByUserId = async (userId) => {
+  const getAllId = async () => {
+      const responseUmkm = await db.collection('umkmPost').where('userId','==',userId).orderBy('timeStamp').get();
+      const dataUmkm = responseUmkm.docs.map(doc => doc.id);
+      return dataUmkm;
+  }
+
+  const allId = await getAllId();
+  const getAllPost = async (result) => {
+      return Promise.all(
+          result.map(async (umkmPostId) => {
+              const umkmPost = await getUmkmPostById(umkmPostId)
+              const umkmImage = await getSingleImageByUmkmPostId(umkmPostId)
+              return { dataPost: umkmPost, dataImage: umkmImage };
+          }));
+  };
+  const allPost = await getAllPost(allId);
+  // console.log('allpost = ', allPost);
+  return allPost;
+}
+
+
+// uda bisa
+export const getAllRolePost = async () => {
+      const a1 = await getAllUmkmPost();
+      const a2 = await getAllDMPost();
+
+      const newArr = async (dt1, dt2) =>{
+          let dt = dt1.concat(dt2);
+          dt.sort(function(a, b){
+              return a.dataPost.timeStamp.seconds -b.dataPost.timeStamp.seconds;
+          })
+          return dt;
+      }
+      return newArr(await getAllUmkmPost(), await getAllDMPost());
 }
 // UDA BISA BEBAS
 export const getSingleImageByUmkmPostId = async (umkmPostId) => {
@@ -151,7 +188,7 @@ export const getAllMediaByUmkmPostId = async (umkmPostId) => {
 }
 //UDAH BISA
 export const createUmkmPost = async (umkmPostData) => {
-  const { userId, title, description, minPrice, maxPrice, topics, filePath } = umkmPostData;
+  const { userId, userName,title, description, minPrice, maxPrice, topics, filePath } = umkmPostData;
   const response = await db.collection('umkmPost').add({
       description: description,
       filePath : filePath,
@@ -159,6 +196,7 @@ export const createUmkmPost = async (umkmPostData) => {
       minPrice: minPrice,
       title: title,
       userId: userId,
+      userName : userName,
       topics: topics,
       // location: location,
       timeStamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -197,9 +235,10 @@ export const getUmkmPostById = async (umkmPostId) => {
 }
 // DM POST
 export const createDMPost = async (DMPostData) => {
-  const { userId, title, description, topics, skill, filePath } = DMPostData
-  await db.collection('dmPost').add({
+  const { userId, userName, title, description, topics, skill, filePath } = DMPostData
+  const response = await db.collection('dmPost').add({
       userId: userId,
+      userName : userName,
       title: title,
       desc: description,
       topics: topics,
@@ -207,6 +246,8 @@ export const createDMPost = async (DMPostData) => {
       filePath: filePath,
       timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
   });
+  const postId = response.id;
+  return postId;
 }
 
 export const editDMPost = async(postID, dmPostData)=>{
@@ -263,7 +304,7 @@ export const getAllDMPost = async () => {
           result.map(async (dmPostId) => {
               const dmPost = await getDmPostById(dmPostId)
               const dmImage = await getSingleImageByDmPostId(dmPostId)
-              return { dmPost: dmPost, dmImage: dmImage };
+              return { dataPost: dmPost, dataImage: dmImage };
           }));
   };
   const allPost = await getAllPost(allId);
@@ -432,6 +473,22 @@ export const addChatFileByChatRoomID = async (chatData) => {
       time: firebase.firestore.FieldValue.serverTimestamp()
   });
   return response;
+}
+
+export const getAllChatRoom = async (userID, role)=>{
+  let fieldName = 'DMID'
+  if(role == "creative"){
+      fieldName = "UMKMID";
+  }
+  const response = await db.collection('chat').where(fieldName, "==", userID).get();
+  
+  const data = response.docs.map(doc => {
+      const responseId = doc.id;
+      const responseData = doc.data();
+      return { repsonseId: responseId, ...responseData }
+  });
+  console.log(data);
+  return data;
 }
 
 // export const getAllCommentsByPostID = async (postID) => {

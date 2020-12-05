@@ -37,7 +37,8 @@
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "use-memo-one": "^1.1.1",
     "expo-camera": "~8.0.0",
-    "react-native-webview": "7.4.3"
+    "react-native-webview": "7.4.3",
+    "expo-image-picker": "~8.0.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

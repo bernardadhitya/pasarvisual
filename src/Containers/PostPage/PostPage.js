@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Text, SafeAreaView, View } from 'react-native';
+import { Text, SafeAreaView, View, Image } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
 import { useFonts } from '@use-expo/font';
@@ -11,17 +11,20 @@ import ButtonUpload from '../../Assets/buttons/ButtonUpload';
 import { TouchableOpacity } from 'react-native';
 import { AuthContext } from '../../Helper/AuthProvider';
 import { Topics } from '../../Constants/Topics';
-import { createDMPost } from '../../../firebase';
+import { createDMPost, uploadImage } from '../../../firebase';
 import { useNavigation } from '@react-navigation/native';
+import * as ImagePicker from 'expo-image-picker';
 
 const PostPage = () => {
-  const { user: { role, userId } } = useContext(AuthContext);
+  const { user: { role, userId, name } } = useContext(AuthContext);
   const [title, setTitle] = useState('');
   const [topics, setTopics] = useState([]);
   const [description, setDescription] = useState('');
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const navigation = useNavigation();
+  const [image, setImage] = useState('');
+  const [fileName, setFileName] = useState('');
 
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -34,26 +37,34 @@ const PostPage = () => {
   }
 
   const handlePublishClicked = async () => {
+    //userId, userName, title, description, topics, skill, filePath
     const postData = {
       userId,
+      userName: name,
       title,
       description,
       topics,
       location: '',
-      filePath: [],
+      filePath: fileName,
       minPrice,
+      skill: [],
       maxPrice
     }
     if (role === 'creative'){
-      await createDMPost(postData);
+      const dmPostId = await createDMPost(postData);
+      console.log('dmPostId:', dmPostId);
+      await uploadImage(image, 'dm-post-files/' + dmPostId + '/' + fileName);
     } else if (role === 'business'){
-      await createUmkmPost(postData);
+      const umkmPostId = await createUmkmPost(postData);
+      await uploadImage(image, 'umkm-post-files/' + umkmPostId + '/' + fileName);
     }
     setTitle('');
     setDescription('');
     setTopics([]);
     setMinPrice(0);
-    setMaxPrice(0)
+    setMaxPrice(0);
+    setImage('');
+    setFileName('');
     navigation.navigate('HomeTab');
   }
 
@@ -69,6 +80,25 @@ const PostPage = () => {
       )
     })
   }
+
+  let openImagePickerAsync = async () => {
+    let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("Permission to access camera roll is required!");
+      return;
+    }
+
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    console.log(pickerResult);
+    if (!pickerResult.cancelled){
+      const filename = pickerResult.uri.split('/').pop();
+      setFileName(filename);
+      setImage(pickerResult.uri);
+    }
+  }
+
+  console.log('image uri:', image);
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -196,9 +226,12 @@ const PostPage = () => {
           }}>
             Upload Media
           </Text>
-          <TouchableOpacity style={{marginTop: 15}}>
+          {!image ? <TouchableOpacity
+            onPress={() => openImagePickerAsync()}
+            style={{marginTop: 15}}
+          >
             <ButtonUpload/>
-          </TouchableOpacity>
+          </TouchableOpacity> : <Image source={{ uri: image }} style={{height: 200, width: 150}}/>}
           <TouchableOpacity 
             onPress={() => handlePublishClicked()}
             style={{
