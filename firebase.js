@@ -23,7 +23,6 @@ export const signUp = async (newUserData) => {
               prefferedTopics: prefferedTopics,
           });
           console.log('SUCCESS SIGNUP');
-
       })
       .catch(error => alert(error.message));      // buat kalau udah pernah di daftarin or somethng
 }
@@ -41,6 +40,7 @@ export const signIn = async (email, password) => {
 
 // GENERAL
 //UDAH BISA
+//PARENT BEBAS
 export const uploadImage = async (uri, imageFulPath) => { // TAMBAHIN PARAM NAMA FILE
   const response = await fetch(uri);
   const blob = await response.blob();
@@ -49,7 +49,7 @@ export const uploadImage = async (uri, imageFulPath) => { // TAMBAHIN PARAM NAMA
 }
 //UDAH BISA
 export const getImageUrlByImageRef = async (imageRef) => {
-  const response = imageRef.getDownloadURL().then((url) => {           // hasilnya masih sering lari2
+  const response = await imageRef.getDownloadURL().then((url) => {           // hasilnya masih sering lari2
       return url;
   }).catch(function (error) {
       console.log(error)
@@ -58,53 +58,84 @@ export const getImageUrlByImageRef = async (imageRef) => {
 }
 
 // UMKM POST
-// image path masi bentuk promise arr
+// UDAH BISA, BEBAS PROMISE
 export const getAllUmkmPost = async () => {
   const getAllId = async () => {
-      const responseUmkm = await db.collection('umkmPost').get();
+      const responseUmkm = await db.collection('umkmPost').orderBy('timeStamp').get();
       const dataUmkm = responseUmkm.docs.map(doc => doc.id);
       return dataUmkm;
   }
 
   const allId = await getAllId();
-
   const getAllPost = async (result) => {
       return Promise.all(
-          result.map((umkmPostId) => {
-              const umkmPost = getUmkmPostById(umkmPostId)
-              const umkmImage = getSingleImageByUmkmPostId(umkmPostId)
+          result.map(async (umkmPostId) => {
+              const umkmPost = await getUmkmPostById(umkmPostId)
+              const umkmImage = await getSingleImageByUmkmPostId(umkmPostId)
               return { umkmPost: umkmPost, umkmImage: umkmImage };
           }));
   };
   const allPost = await getAllPost(allId);
+  // console.log('allpost = ', allPost);
   return allPost;
-
-  // const response = await db.collection('umkmPost').orderBy('timeStamp').get();
-  // const data = response.docs.map(doc => {
-  //     const responseId = doc.id;
-  //     let responseData = doc.data();
-  //     responseData.imagePath = getAllMediaByUmkmPostId(responseId);       // image path masi bentuk promise arr
-  //     return { classId: responseId, ...responseData }
-  // });
-  // const dataResult = Promise.all(data);
-  // return dataResult;
 }
-// MESTINYA UDA BISA
+// UDA BISA BEBAS
 export const getSingleImageByUmkmPostId = async (umkmPostId) => {
   const doc = await db.collection('umkmPost').doc(umkmPostId).get();
   const fpath = '/umkm-post-files/' + umkmPostId + '/' + doc.data().filePath;
-  console.log('fpath = ', fpath)
-  const response = storage.child(fpath).getDownloadURL().then((url) => {           // hasilnya masih sering lari2
+  const response = await storage.child(fpath).getDownloadURL().then((url) => {           // hasilnya masih sering lari2
       return url;
   }).catch(function (error) {
       console.log(error)
   });
   return response;
+}
 
+// export const searchUmkmPostByTitle = async (queryStr) => {
+//     const getAllId = async () => {
+//         const responseUmkm = await db.collection('umkmPost').ref().orderBy('title').startAt(queryStr)
+//         .endAt(queryStr + "\uf8ff").get();
+//         const dataUmkm = responseUmkm.docs.map(doc => doc.id);
+//         return dataUmkm;
+//     }
+
+//     const allId = await getAllId();
+//     const getAllPost = async (result) => {
+//         return Promise.all(
+//             result.map(async (umkmPostId) => {
+//                 const umkmPost = await getUmkmPostById(umkmPostId)
+//                 const umkmImage = await getSingleImageByUmkmPostId(umkmPostId)
+//                 return { umkmPost: umkmPost, umkmImage: umkmImage };
+//             }));
+//     };
+//     const allPost = await getAllPost(allId);
+//     return allPost;
+// }
+
+// udah bisa
+export const searchUmkmPostByTopics = async (topicsArr) => {
+  const getAllId = async () => {
+      const responseUmkm = await db.collection('umkmPost').where('topics','array-contains-any', topicsArr).get();
+      const dataUmkm = responseUmkm.docs.map(doc => doc.id);
+      return dataUmkm;
+  }
+
+  const allId = await getAllId();
+  const getAllPost = async (result) => {
+      return Promise.all(
+          result.map(async (umkmPostId) => {
+              const umkmPost = await getUmkmPostById(umkmPostId)
+              const umkmImage = await getSingleImageByUmkmPostId(umkmPostId)
+              return { umkmPost: umkmPost, umkmImage: umkmImage };
+          }));
+  };
+  const allPost = await getAllPost(allId);
+  return allPost;
 }
 
 
-//UDAH BISA
+
+//UDAH BISA BEBAS
 export const getAllMediaByUmkmPostId = async (umkmPostId) => {
   const getAllMedia = async (result) => {
       return Promise.all(
@@ -120,46 +151,96 @@ export const getAllMediaByUmkmPostId = async (umkmPostId) => {
 }
 //UDAH BISA
 export const createUmkmPost = async (umkmPostData) => {
-  const { userId, title, description, minPrice, maxPrice, topics, location } = umkmPostData;
+  const { userId, title, description, minPrice, maxPrice, topics, filePath } = umkmPostData;
   const response = await db.collection('umkmPost').add({
-      userId: userId,
-      title: title,
       description: description,
-      minPrice: minPrice,
+      filePath : filePath,
       maxPrice: maxPrice,
+      minPrice: minPrice,
+      title: title,
+      userId: userId,
       topics: topics,
-      location: location,
+      // location: location,
       timeStamp: firebase.firestore.FieldValue.serverTimestamp()
   });
   const umkmPostId = response.id;
   return umkmPostId;
 }
 
+export const editUmkmPost = async (postID, umkmPostData)=>{
+  const { title, description, minPrice, maxPrice, topics, filePath } = umkmPostData;
+  const response = await db.collection('umkmPost').doc(postID).update({
+      description: description,
+      filePath : filePath,
+      maxPrice: maxPrice,
+      minPrice: minPrice,
+      title: title,
+      topics: topics,
+  });
+  return response;
+}
+
+export const addNewUMKMPostLike = async (data) => {
+  const {likerID, postID} = data
+  const response = await db.collection('umkmPost').doc(postID).collection('likes').doc(likerID).set
+  ({
+      likerID: likerID,
+  });
+  return response;
+}
+// parent bebas
 export const getUmkmPostById = async (umkmPostId) => {
   const doc = await db.collection('umkmPost').doc(umkmPostId).get();
   const responseId = doc.id;
   let responseData = doc.data();
   return { classId: responseId, ...responseData }
 }
-
-
 // DM POST
-//UDAH BISA
 export const createDMPost = async (DMPostData) => {
-  const { userId, title, description, topics, location, filePath } = DMPostData
+  const { userId, title, description, topics, skill, filePath } = DMPostData
   await db.collection('dmPost').add({
-    userId: userId,
-    topics: topics,
-    title: title,
-    desc: description,
-    location: location,
-    comments: [],
-    like: [],
-    filePath: filePath,
-    timeStamp: firebase.firestore.FieldValue.serverTimestamp()
+      userId: userId,
+      title: title,
+      desc: description,
+      topics: topics,
+      skill: skill,
+      filePath: filePath,
+      timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
   });
 }
-// IMAGE NYA BLM BISA, NUNGGU YG KYK UMKM POST BISA DULU
+
+export const editDMPost = async(postID, dmPostData)=>{
+  const { title, description, minPrice, maxPrice, topics, filePath } = dmPostData;
+  const response = await db.collection('dmPost').doc(postID).update({
+      description: description,
+      filePath : filePath,
+      maxPrice: maxPrice,
+      minPrice: minPrice,
+      title: title,
+      topics: topics,
+  });
+  return response;
+}
+
+export const addNewDMPostLike = async (data) => {
+  const {likerID, postID} = data
+  const response = await db.collection('dmPost').doc(postID).collection('likes').doc(likerID).set
+  ({
+      likerID: likerID,
+  });
+  return response;
+}
+
+export const addNewDMPostComment = async (data) => {
+  const {commenterID, commentContent, postID} = data
+  const response = await db.collection('dmPost').doc(postID).collection('comments').add({
+      commenterID: commenterID,
+      commentContent: commentContent,
+      timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+  });
+  return response;
+}
+// UDAH BISA, BEBAS PROMISE
 export const getAllDMPostByUserId = async (userId) => {
   const response = await db.collection('dmPost').where("userId", "==", userId).get();
   const data = response.docs.map(doc => {
@@ -169,25 +250,101 @@ export const getAllDMPostByUserId = async (userId) => {
   });
   return data;
 }
-
+// UDAH BISA BEBAS
 export const getAllDMPost = async () => {
-  const response = await db.collection('dmPost').orderBy("timeStamp").get();
-  const data = response.docs.map(doc => {
-      const responseId = doc.id;
-      const responseData = doc.data();
-      return { classId: responseId, ...responseData }
-  });
-  return data;
+  const getAllId = async () => {
+      const responseDm = await db.collection('dmPost').orderBy("timeStamp").get();
+      const dataDm = responseDm.docs.map(doc => doc.id);
+      return dataDm;
+  }
+  const allId = await getAllId();
+  const getAllPost = async (result) => {
+      return Promise.all(
+          result.map(async (dmPostId) => {
+              const dmPost = await getDmPostById(dmPostId)
+              const dmImage = await getSingleImageByDmPostId(dmPostId)
+              return { dmPost: dmPost, dmImage: dmImage };
+          }));
+  };
+  const allPost = await getAllPost(allId);
+  return allPost;
 }
 
+export const  searchDmPostByTopics = async (topicsArr)  => {
+  const getAllId = async () => {
+      const responseDm = await db.collection('dmPost').where('topics','array-contains-any', topicsArr).get();
+      const dataDm = responseDm.docs.map(doc => doc.id);
+      return dataDm;
+  }
+  const allId = await getAllId();
+  const getAllPost = async (result) => {
+      return Promise.all(
+          result.map(async (dmPostId) => {
+              const dmPost = await getDmPostById(dmPostId)
+              const dmImage = await getSingleImageByDmPostId(dmPostId)
+              return { dmPost: dmPost, dmImage: dmImage };
+          }));
+  };
+  const allPost = await getAllPost(allId);
+  return allPost;
+}
+
+// UDA BISA BEBAS
+export const getAllMediaByDmPostId = async (dmPostId) => {
+  const getAllMedia = async (result) => {
+      return Promise.all(
+          result.map((imageRef) => { return getImageUrlByImageRef(imageRef) }));
+  };
+  const folderPath = '/dm-post-files/' + dmPostId;
+  const fileNames = await storage.child(folderPath).listAll();
+  const allMedia = await getAllMedia(fileNames.items);
+  console.log(allMedia);
+  return allMedia;
+}
+
+// UDA BISA BEBAS
+export const getDmPostById = async (dmPostId) => {
+  const doc = await db.collection('dmPost').doc(dmPostId).get();
+  const responseId = doc.id;
+  let responseData = doc.data();
+  return { classId: responseId, ...responseData }
+}
+
+//UDA BISA BEBAS
+export const getSingleImageByDmPostId = async (dmPostId) => {
+  const doc = await db.collection('dmPost').doc(dmPostId).get();
+  const fpath = '/dm-post-files/' + dmPostId + '/' + doc.data().filePath;
+  const response = await storage.child(fpath).getDownloadURL().then((url) => {
+      return url;
+  }).catch(function (error) {
+      console.log(error)
+  });
+  return response;
+}
+
+
+
 //USER
-//UDAH BISA
+//UDAH BISA BEBAS
 export const getUserById = async (userId) => {
   const response = await db.collection('users').doc(userId).get();
   const responseId = response.id;
   const responseData = response.data();
+  responseData.profileUrl = await getUserPhotoByUserId(userId)
   return { userId: responseId, ...responseData };
 }
+// UDAH BISA
+export const updateProfileUser = async (userData) => {
+  const {mainAddress , phoneNumber, pin, profilePicture, userId} = userData;
+
+  await db.collection('users').doc(userId).update({
+      mainAddress: mainAddress,
+      phoneNumber : phoneNumber,
+      profilePicture : profilePicture,
+      pin : pin
+    });
+}
+
 //UDAH BISA
 export const getUserByEmail = async (email) => {
   const response = await db.collection('users').where("email", "==", email).get();
@@ -198,32 +355,56 @@ export const getUserByEmail = async (email) => {
   });
   return data;
 }
-
-
-export const addCommentByPostID = async (postID) => {
-
-}
-
-export const getChatByChatID = async (chatID) => {
-
-}
-
-export const getChatRoom = async (userIDs)=>{
-  const {DMID, UMKMID} = userIDs;
-  const response = await db.collection('chat').where("DMID", "==", DMID).where("UMKMID", "==", UMKMID).get();
-  const result = response.docs.map(doc=>doc.id);
-  console.log('================');
-  console.log(result);
-  return result;
-}
-
-export const addNewChatRoom = async (user1, user2) => {
-  const response = await db.collection('chat').add({
-      userIds: [user1, user2],
+// UDAH BISA BEBAS
+export const getUserPhotoByUserId = async (userId) =>{
+  const doc = await db.collection('users').doc(userId).get();
+  const fpath = '/user-photo-profile/' + userId + '/' + doc.data().profilePicture;
+  // console.log('fpath = ', fpath)
+  const response = await storage.child(fpath).getDownloadURL().then((url) => {
+      return url;
+  }).catch(function (error) {
+      console.log(error)
   });
   return response;
 }
 
+// export const addCommentByPostID = async (postID) => {
+
+// }
+
+// export const getChatByChatID = async (chatID) => {
+
+// }
+//AMBIL CHAT ROOM YANG BERISI CHAT UMKM (UMKMID) DENGAN DM (DMID)
+//UDAH BISA
+export const getChatRoom = async (userIDs)=>{
+  const {DMID, UMKMID} = userIDs;
+  const response = await db.collection('chat').where("DMID", "==", DMID).where("UMKMID", "==", UMKMID).get();
+  const result = response.docs.map(doc=>doc.id);
+  console.log(result[0]);
+  //Kalo return undefined, panggil [addNewChatRoom]
+  return result;
+}
+
+export const getChatRoomConversation = async (chatRoomID)=>{
+  const response = await db.collection('chat').doc(chatRoomID).collection('chat').orderBy('time').get();
+  const convos = response.docs.map(doc => doc.data());
+  return convos;
+}
+
+//UDAH BISA
+//MENAMBAHKAN CHATROOM BARU 
+export const addNewChatRoom = async (usersData) => {
+  const { DMID, UMKMID } = usersData
+  const response = await db.collection('chat').add({
+      DMID: DMID,
+      UMKMID: UMKMID,
+  });
+  return response;
+}
+
+//UDAH BISA
+//MENAMBAHKAN CHAT BARU DI DALAM CHATROOM
 export const addChatTextByChatRoomID = async (chatData) => {
   const { chatRoomID, message, senderID } = chatData
   const response = await db.collection('chat').doc(chatRoomID).collection('chat').add({
@@ -233,6 +414,15 @@ export const addChatTextByChatRoomID = async (chatData) => {
   });
   return response;
 }
+
+export const addCommentByPostID = async (postID) => {
+
+}
+
+// export const getChatByChatID = async (chatID) => {
+
+// }
+
 
 export const addChatFileByChatRoomID = async (chatData) => {
   const { chatRoomID, filePath, senderID } = chatData
@@ -281,29 +471,39 @@ export const addChatFileByChatRoomID = async (chatData) => {
 // }
 
 //TRANSACTION 
+
+// BISA, BEBAS PROMISE
 export const getAllTransactionHistory = async (userID) => {
   const response1 = await db.collection('transaction').where("userId1", "==", userID).get();
   const response2 = await db.collection('transaction').where("userId2", "==", userID).get();
 
-  const data1 = response1.docs.map(doc => {
-      const responseId = doc.id;
-      const responseData = doc.data();
-      responseData.partnerId = responseData.userId2
-      return { classId: responseId, ...responseData }
-  });
+  const getData1 = async (result) => {
+      return Promise.all(
+          result.map(async (doc) => {
+              const responseId = doc.id;
+              const responseData = doc.data();
+              responseData.partnerProfile = await getUserById(responseData.userId2)
+              return { classId: responseId, ...responseData }
+          }));
+  };
 
-  const data2 = response2.docs.map(doc => {
-      const responseId = doc.id;
-      const responseData = doc.data();
-      responseData.partnerId = responseData.userId1
-      return { classId: responseId, ...responseData }
-  });
-  const newArr = data1.concat(data2);
-  // console.log('GET PROS');
-  // console.log(data);
-  return newArr;
+  const getData2 = async (result) => {
+      return Promise.all(
+          result.map(async (doc) => {
+              const responseId = doc.id;
+              const responseData = doc.data();
+              responseData.partnerProfile = await getUserById(responseData.userId1)
+              return { classId: responseId, ...responseData }
+          }));
+  };
+  const newArr = async (dt1, dt2) =>{
+      let dt = dt1.concat(dt2);
+      return dt;
+  }
+  return newArr(await getData1(response1.docs), await getData2(response2.docs));
 }
-// BELOM NYOBA
+
+// UDAH BISA
 export const updateTransaction = async (transactionId, newStatus) => {
   await db.collection('transaction').doc(transactionId).update({
       status: newStatus
@@ -328,7 +528,7 @@ export const getProspectTransactionByProsTransId = async (prosTransId) => {   //
   const doc = await db.collection('prospectTransaction').doc(prosTransId).get();
   const responseId = doc.id;
   const responseData = doc.data();
-  console.log('res id = ', responseId, ' response data = ', responseData);
+  // console.log('res id = ', responseId, ' response data = ', responseData);
   return { classId: responseId, ...responseData }
 }
 
@@ -339,20 +539,22 @@ export const addProspectTransaction = async (prospectTransactionData) => {
       bidPrice: bidPrice,
       message: message,
       receiverId: receiverId,
+      receiverName: receiverName,
       senderId: senderId,
+      senderName : senderName,
       status: 'NEW'
   });
   const respId = response.id;
   return respId;
 }
-
+// UDAH BISA
 export const updateProspectTransaction = async (prosTransId, newStatus) => {
   await db.collection('prospectTransaction').doc(prosTransId).update({
       status: newStatus
     })
 }
 
-
+// UDAH BISA
 export const convertProspectToTransaction = async (transactionProspectID) => {
   await updateProspectTransaction(transactionProspectID, 'ACCEPT')
   const prospectRes = await getProspectTransactionByProsTransId(transactionProspectID);
@@ -361,7 +563,9 @@ export const convertProspectToTransaction = async (transactionProspectID) => {
       price: prospectRes.bidPrice,
       message: prospectRes.message,
       userId1: prospectRes.receiverId,
+      userName1 : prospectRes.receiverName,
       userId2: prospectRes.senderId,
+      userName2 : prospectRes.senderName,
       status: 'Menunggu penyelesaian kontrak kerja'
   });
 }
