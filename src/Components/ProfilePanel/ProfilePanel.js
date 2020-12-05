@@ -12,7 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const ProfilePanel = (props) => {
   const navigation = useNavigation();
-  const { handleClick, isSelf } = props;
+  const { handleClick, isSelf, user } = props;
+  const { name } = user;
   let [fontsLoaded] = useFonts(Fonts);
 
   const renderOthersOption = () => {
@@ -131,7 +132,7 @@ const ProfilePanel = (props) => {
           fontFamily: 'Bold',
           fontSize: 21
         }}>
-          Bernard Adhitya
+          { name }
         </Text>
       </View>
       { renderOptions() }
