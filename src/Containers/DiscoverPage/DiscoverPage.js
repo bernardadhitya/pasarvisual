@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -12,8 +12,12 @@ import CreativePostDetail from '../../Components/PostPanel/CreativePostDetail';
 import { Input } from '@ui-kitten/components';
 import FilterTopicsPanel from '../../Components/DiscoverPanel/FilterTopicsPanel';
 import ShowcasePanel from '../../Components/ShowcasePanel/ShowcasePanel';
+import { Topics } from '../../Constants/Topics';
+import TopicCard from '../../Components/DiscoverPanel/TopicCard';
+import { TouchableOpacity } from 'react-native';
 
 const DiscoverPage = () => {
+  const [selectedTopics, setSelectedTopics] = useState([]);
   let [fontsLoaded] = useFonts(Fonts);
 
   let sheetRef = useRef(null);
@@ -71,13 +75,23 @@ const DiscoverPage = () => {
           borderRadius={16}
         />
         <ScrollView style={{paddingHorizontal: 20, paddingTop: 50}}>
-          <Input style={{
-            backgroundColor: DarkColors["sub-secondary"],
-            borderColor: DarkColors["sub-primary"]
-          }}
-            placeholder="Search"
-          />
-          <FilterTopicsPanel/>
+          <ScrollView horizontal>
+            {Topics.map(topic => {
+              return(
+                <TouchableOpacity
+                  onPress={() => {
+                    if (!selectedTopics.includes(topic)){
+                      setSelectedTopics([...selectedTopics, topic])
+                    } else {
+                      setSelectedTopics(selectedTopics.filter(selected => selected !== topic))
+                    }
+                  }}
+                >
+                  <TopicCard topic={topic} selected={selectedTopics.includes(topic)}/>
+                </TouchableOpacity>
+              )
+            })}
+          </ScrollView>
           <ShowcasePanel handleClick={() => sheetRef.current.snapTo(1)}/>
           <View style={{height: 100}}></View>
         </ScrollView>
