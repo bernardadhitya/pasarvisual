@@ -84,7 +84,7 @@ const HomePage = () => {
               fontSize: 42
             }}
           >
-            Feeds
+            Beranda
           </Text>
           <HomeCard
             role='creative'
