@@ -15,6 +15,10 @@ const OffersCard = (props) => {
   const [sender, setSender] = useState({});
   let [fontsLoaded] = useFonts(Fonts);
 
+  const renderBidPrice = () => {
+    return 'Budget: Rp.' + bidPrice;
+  }
+
   return fontsLoaded ? (
     <View style={{paddingLeft: 6, paddingRight: 0, paddingTop: 15}}>
       <View style={styles.row}>
@@ -90,7 +94,7 @@ const OffersCard = (props) => {
                   fontSize: 14
                 }}
               >
-                { 'Budget', bidPrice }
+                { renderBidPrice() }
               </Text>
             </View>
           </View>
