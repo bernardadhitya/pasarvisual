@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -18,6 +18,7 @@ import { AuthContext } from '../../Helper/AuthProvider';
 
 const ProfilePage = () => {
   const { user } = useContext(AuthContext);
+  const [selectedPost, setSelectedPost] = useState(null);
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -25,6 +26,9 @@ const ProfilePage = () => {
   let fall = useMemoOne(() => new Animated.Value(1), []);
 
   const renderContent = () => {
+    if (!selectedPost) return;
+    const { dataPost, dataImage } = selectedPost;
+    const {title, topics, like, desc, userId, userName} = dataPost;
     return (
       <View
         style={{
@@ -33,7 +37,14 @@ const ProfilePage = () => {
           height: 700
         }}
       >
-        <CreativePostDetail role='creative'/>
+        <CreativePostDetail
+          role='creative'
+          title={title}
+          description={desc}
+          authorId={userId}
+          authorName={userName}
+          image={dataImage}
+        />
       </View>
     )
   };
@@ -81,7 +92,14 @@ const ProfilePage = () => {
               <IconSetting/>
             </TouchableOpacity>
           </View>
-          <ProfilePanel user={user} isSelf handleClick={() => sheetRef.current.snapTo(1)}/>
+          <ProfilePanel
+            user={user}
+            isSelf
+            handleClick={(post) => {
+              setSelectedPost(post);
+              sheetRef.current.snapTo(1)
+            }}
+          />
         </ScrollView>
         {renderShadow()}
       </SafeAreaView>
