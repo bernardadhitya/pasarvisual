@@ -19,7 +19,7 @@ const ShowcasePanel = (props) => {
     return posts.map((post, index) => {
       const { dataImage } = post; 
       return index % 2 === 0 ?
-        <TouchableOpacity onPress={() => handleClick()}>
+        <TouchableOpacity onPress={() => handleClick(post)}>
           <Image
             source={{ uri: dataImage }}
             style={{
@@ -33,7 +33,7 @@ const ShowcasePanel = (props) => {
         </TouchableOpacity> :
         <>
           <View style={{width: 20}}></View>
-          <TouchableOpacity onPress={() => handleClick()}>
+          <TouchableOpacity onPress={() => handleClick(post)}>
             <Image
               source={{ uri: dataImage }}
               style={{

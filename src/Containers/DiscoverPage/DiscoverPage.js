@@ -21,6 +21,7 @@ const DiscoverPage = () => {
   const [posts, setPosts] = useState([]);
   const [selectedTopics, setSelectedTopics] = useState([]);
   let [fontsLoaded] = useFonts(Fonts);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +41,10 @@ const DiscoverPage = () => {
   let fall = useMemoOne(() => new Animated.Value(1), []);
 
   const renderContent = () => {
+    if (!selectedPost) return;
+    const { dataImage, dataPost } = selectedPost;
+    const { title, topics, desc, userName } = dataPost;
+    console.log('selected post on discover ===>', selectedPost);
     return (
       <View
         style={{
@@ -48,7 +53,15 @@ const DiscoverPage = () => {
           height: 700
         }}
       >
-        <CreativePostDetail role='creative'/>
+        <CreativePostDetail
+          role='creative'
+          handleClick={() => {}}
+          title={title}
+          description={desc}
+          topics={topics}
+          authorName={userName}
+          image={dataImage}
+        />
       </View>
     )
   };
@@ -108,7 +121,13 @@ const DiscoverPage = () => {
               )
             })}
           </ScrollView>
-          <ShowcasePanel posts={posts} handleClick={() => sheetRef.current.snapTo(1)}/>
+          <ShowcasePanel
+            posts={posts}
+            handleClick={(post) => {
+              setSelectedPost(post);
+              sheetRef.current.snapTo(1)
+            }}
+          />
           <View style={{height: 100}}></View>
         </ScrollView>
         {renderShadow()}
