@@ -123,7 +123,7 @@ const PostPage = () => {
               fontSize: 42
             }}
           >
-            { role === 'business' ? 'Job Offer' : 'Post'}
+            { role === 'business' ? 'Tawaran Pekerjaan' : 'Post'}
           </Text>
           <Text style={{
             marginTop: 30,
