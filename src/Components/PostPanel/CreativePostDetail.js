@@ -79,7 +79,7 @@ const CreativePostDetail = (props) => {
               width: 40
             }}>
               <Text style={{color: DarkColors["text-primary"]}}>
-              {authorName.charAt(0)}
+                {authorName ? authorName.charAt(0) : ''}
               </Text>
             </View>
           </View>

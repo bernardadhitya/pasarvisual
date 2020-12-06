@@ -52,7 +52,6 @@ const PostPage = () => {
     }
     if (role === 'creative'){
       const dmPostId = await createDMPost(postData);
-      console.log('dmPostId:', dmPostId);
       await uploadImage(image, 'dm-post-files/' + dmPostId + '/' + fileName);
     } else if (role === 'business'){
       const umkmPostId = await createUmkmPost(postData);
@@ -90,15 +89,12 @@ const PostPage = () => {
     }
 
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    console.log(pickerResult);
     if (!pickerResult.cancelled){
       const filename = pickerResult.uri.split('/').pop();
       setFileName(filename);
       setImage(pickerResult.uri);
     }
   }
-
-  console.log('image uri:', image);
 
   if (!fontsLoaded) {
     return <AppLoading />;

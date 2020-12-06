@@ -18,7 +18,6 @@ import { AuthContext } from '../../Helper/AuthProvider';
 
 const ProfilePage = () => {
   const { user } = useContext(AuthContext);
-  console.log('user:', user);
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 

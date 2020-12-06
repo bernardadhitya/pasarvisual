@@ -19,7 +19,6 @@ const MessagePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedOffersByUserId = await getProspectTransactionByReceiverId(userId);
-      console.log(fetchedOffersByUserId);
       setOffers(fetchedOffersByUserId);
     }
     fetchData();

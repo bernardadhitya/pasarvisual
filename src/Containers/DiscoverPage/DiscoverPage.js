@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -15,10 +15,26 @@ import ShowcasePanel from '../../Components/ShowcasePanel/ShowcasePanel';
 import { Topics } from '../../Constants/Topics';
 import TopicCard from '../../Components/DiscoverPanel/TopicCard';
 import { TouchableOpacity } from 'react-native';
+import { getAllDMPost, searchDmPostByTopics } from '../../../firebase';
 
 const DiscoverPage = () => {
+  const [posts, setPosts] = useState([]);
   const [selectedTopics, setSelectedTopics] = useState([]);
   let [fontsLoaded] = useFonts(Fonts);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let fetchedPosts;
+      if (selectedTopics.length === 0){
+        fetchedPosts = await getAllDMPost();
+      } else {
+        fetchedPosts = await searchDmPostByTopics(selectedTopics);
+      }
+      console.log('fetched posts: ', fetchedPosts.length);
+      setPosts(fetchedPosts);
+    }
+    fetchData();
+  }, [selectedTopics]);
 
   let sheetRef = useRef(null);
   let fall = useMemoOne(() => new Animated.Value(1), []);
@@ -92,7 +108,7 @@ const DiscoverPage = () => {
               )
             })}
           </ScrollView>
-          <ShowcasePanel handleClick={() => sheetRef.current.snapTo(1)}/>
+          <ShowcasePanel posts={posts} handleClick={() => sheetRef.current.snapTo(1)}/>
           <View style={{height: 100}}></View>
         </ScrollView>
         {renderShadow()}

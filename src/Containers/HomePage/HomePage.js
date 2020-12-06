@@ -33,7 +33,6 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedAllPosts = await getAllDMPost();
-      console.log(fetchedAllPosts);
       setPosts(fetchedAllPosts);
     }
     fetchData();
@@ -62,7 +61,6 @@ const HomePage = () => {
 
   const renderContent = () => {
     if (!selectedPost) return;
-    console.log('selected post --->', selectedPost);
     const {title, desc, topics, image, userName} = selectedPost;
     return (
       <View

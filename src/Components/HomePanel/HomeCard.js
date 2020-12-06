@@ -11,8 +11,7 @@ import IconHeart from '../../Assets/icons/IconHeart';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeCard = (props) => {
-  const { role, image, handleClick, title, description, userId, userName } = props;
-  console.log('image link:', image);
+  const { role, image, handleClick, title, description, authorId, authorName } = props;
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -26,7 +25,7 @@ const HomeCard = (props) => {
       }}
     >
       <TouchableOpacity
-        onPress={() => navigation.navigate('OtherProfileScreen')}
+        onPress={() => navigation.navigate('OtherProfileScreen', {userId: uthorId})}
         style={{marginBottom: 15}}
       >
         <View style={styles.row}>
@@ -41,7 +40,7 @@ const HomeCard = (props) => {
               width: 40
             }}>
               <Text>
-                Test
+                {authorName ? authorName.charAt(0) : ''}
               </Text>
             </View>
           </View>
@@ -53,7 +52,7 @@ const HomeCard = (props) => {
                 fontSize: 16
               }}
             >
-              Name
+              {authorName}
             </Text>
             <Text
               style={{
