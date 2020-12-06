@@ -85,7 +85,9 @@ const ChatCard = (props) => {
                 paddingTop: 4,
                 backgroundColor: DarkColors.primary,
                 borderRadius: 12,
-                marginRight: 8
+                marginRight: 8,
+                width: 21,
+                height: 21
               }}>
                 <Text
                   style={{
