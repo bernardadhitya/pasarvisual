@@ -30,6 +30,7 @@ const DiscoverPage = () => {
         fetchedPosts = await getAllDMPost();
       } else {
         fetchedPosts = await searchDmPostByTopics(selectedTopics);
+        console.log('fetched filtered posts --->', fetchedPosts);
       }
       console.log('fetched posts: ', fetchedPosts.length);
       setPosts(fetchedPosts);
@@ -44,7 +45,6 @@ const DiscoverPage = () => {
     if (!selectedPost) return;
     const { dataImage, dataPost } = selectedPost;
     const { title, topics, desc, userName } = dataPost;
-    console.log('selected post on discover ===>', selectedPost);
     return (
       <View
         style={{

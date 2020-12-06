@@ -9,8 +9,7 @@ const db = firebase.firestore();
 const storage = firebase.storage().ref();
 
 // SIGN IN SIGN UP 
-
-//UDAH BISA
+//CHECK
 export const signUp = async (newUserData) => {
   const { email, password, name, phoneNumber, role, prefferedTopics } = newUserData;
   fireAuth.createUserWithEmailAndPassword(email, password)
@@ -26,7 +25,7 @@ export const signUp = async (newUserData) => {
       })
       .catch(error => alert(error.message));      // buat kalau udah pernah di daftarin or somethng
 }
-//UDAH BISA
+//CHECK
 export const signIn = async (email, password) => {
   let usertest = "";
   fireAuth.signInWithEmailAndPassword(email, password)
@@ -39,7 +38,7 @@ export const signIn = async (email, password) => {
 }
 
 // GENERAL
-//UDAH BISA
+//CHECK
 //PARENT BEBAS
 export const uploadImage = async (uri, imageFulPath) => { // TAMBAHIN PARAM NAMA FILE
   const response = await fetch(uri);
@@ -163,7 +162,7 @@ export const searchUmkmPostByTopics = async (topicsArr) => {
           result.map(async (umkmPostId) => {
               const umkmPost = await getUmkmPostById(umkmPostId)
               const umkmImage = await getSingleImageByUmkmPostId(umkmPostId)
-              return { umkmPost: umkmPost, umkmImage: umkmImage };
+              return { dataPost: dataPost, dataImage: umkmImage };
           }));
   };
   const allPost = await getAllPost(allId);
@@ -250,6 +249,25 @@ export const createDMPost = async (DMPostData) => {
   return postId;
 }
 
+export const getDmPostByUserId = async (userId) => {
+  const getAllId = async () => {
+      const responseDm = await db.collection('dmPost').where('userId','==',userId).orderBy('timeStamp').get();
+      const dataDm = responseDm.docs.map(doc => doc.id);
+      return dataDm;
+  }
+  const allId = await getAllId();
+  const getAllPost = async (result) => {
+      return Promise.all(
+          result.map(async (dmPostId) => {
+              const dmPost = await getDmPostById(dmPostId)
+              const dmImage = await getSingleImageByDmPostId(dmPostId)
+              return { dataPost: dmPost, dataImage: dmImage };
+          }));
+  };
+  const allPost = await getAllPost(allId);
+  return allPost;
+}
+
 export const editDMPost = async(postID, dmPostData)=>{
   const { title, description, minPrice, maxPrice, topics, filePath } = dmPostData;
   const response = await db.collection('dmPost').doc(postID).update({
@@ -323,7 +341,7 @@ export const  searchDmPostByTopics = async (topicsArr)  => {
           result.map(async (dmPostId) => {
               const dmPost = await getDmPostById(dmPostId)
               const dmImage = await getSingleImageByDmPostId(dmPostId)
-              return { dmPost: dmPost, dmImage: dmImage };
+              return { dataPost: dmPost, dataImage: dmImage };
           }));
   };
   const allPost = await getAllPost(allId);
@@ -342,6 +360,8 @@ export const getAllMediaByDmPostId = async (dmPostId) => {
   console.log(allMedia);
   return allMedia;
 }
+
+
 
 // UDA BISA BEBAS
 export const getDmPostById = async (dmPostId) => {
@@ -476,12 +496,11 @@ export const addChatFileByChatRoomID = async (chatData) => {
 }
 
 export const getAllChatRoom = async (userID, role)=>{
-  let fieldName = 'DMID'
+  let fieldName = 'UMKMID'
   if(role == "creative"){
-      fieldName = "UMKMID";
+      fieldName = "DMID";
   }
   const response = await db.collection('chat').where(fieldName, "==", userID).get();
-  
   const data = response.docs.map(doc => {
       const responseId = doc.id;
       const responseData = doc.data();

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -13,21 +13,20 @@ import { DarkColors } from '../../Constants/Colors';
 import ButtonBack from '../../Assets/buttons/ButtonBack';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { getUserById } from '../../../firebase';
 
 const OthersProfilePage = (props) => {
-  const { userId } = props;
+  const { userId, userName } = props.route.params;
+  console.log('props:', props);
+  const otherUser = {
+    userId, name: userName
+  }
+  console.log('other user:', otherUser);
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
   let sheetRef = useRef(null);
   let fall = useMemoOne(() => new Animated.Value(1), []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      
-    }
-    fetchData();
-  }, []);
 
   const renderContent = () => {
     return (
@@ -86,7 +85,10 @@ const OthersProfilePage = (props) => {
           >
             <ButtonBack/>
           </TouchableOpacity>
-          <ProfilePanel handleClick={() => sheetRef.current.snapTo(1)}/>
+          <ProfilePanel
+            user={otherUser}
+            handleClick={() => sheetRef.current.snapTo(1)}
+          />
         </ScrollView>
         {renderShadow()}
       </SafeAreaView>

@@ -25,7 +25,10 @@ const HomeCard = (props) => {
       }}
     >
       <TouchableOpacity
-        onPress={() => navigation.navigate('OtherProfileScreen', {userId: uthorId})}
+        onPress={() => navigation.navigate('OtherProfileScreen', {
+          userId: authorId,
+          userName: authorName
+        })}
         style={{marginBottom: 15}}
       >
         <View style={styles.row}>
