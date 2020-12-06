@@ -11,7 +11,7 @@ import IconHeart from '../../Assets/icons/IconHeart';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeCard = (props) => {
-  const { role, image, handleClick, title, description } = props;
+  const { role, image, handleClick, title, description, userId, userName } = props;
   console.log('image link:', image);
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);

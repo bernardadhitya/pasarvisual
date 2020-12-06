@@ -42,7 +42,7 @@ const HomePage = () => {
   const renderHomePosts = () => {
     return posts.map(post => {
       const {dataImage, dataPost} = post;
-      const {title, topics, like, desc} = dataPost;
+      const {title, topics, like, desc, userId, userName} = dataPost;
       return (
         <HomeCard
           role='creative'
@@ -53,6 +53,8 @@ const HomePage = () => {
           }}
           title={title}
           description={desc}
+          authorId={userId}
+          authorName={userName}
         />
       )
     })
@@ -61,7 +63,7 @@ const HomePage = () => {
   const renderContent = () => {
     if (!selectedPost) return;
     console.log('selected post --->', selectedPost);
-    const {title, desc, topics, image} = selectedPost;
+    const {title, desc, topics, image, userName} = selectedPost;
     return (
       <View
         style={{
@@ -77,6 +79,7 @@ const HomePage = () => {
           description={desc}
           topics={topics}
           image={image}
+          authorName={userName}
         />
       </View>
     )

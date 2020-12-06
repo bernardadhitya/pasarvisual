@@ -9,9 +9,8 @@ import { AuthContext } from '../../Helper/AuthProvider';
 import { Image } from 'react-native';
 
 const CreativePostDetail = (props) => {
-  const { user: { name } } = useContext(AuthContext);
   let [fontsLoaded] = useFonts(Fonts);
-  const { role, handleClick, title, description, topics, image } = props;
+  const { role, handleClick, title, description, topics, image, authorName } = props;
 
   const renderButton = () => {
     return (
@@ -80,7 +79,7 @@ const CreativePostDetail = (props) => {
               width: 40
             }}>
               <Text style={{color: DarkColors["text-primary"]}}>
-                {name.charAt(0)}
+              {authorName.charAt(0)}
               </Text>
             </View>
           </View>
@@ -92,7 +91,7 @@ const CreativePostDetail = (props) => {
                 fontSize: 16
               }}
             >
-              {name}
+              {authorName}
             </Text>
             <Text
               style={{
