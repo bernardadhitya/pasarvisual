@@ -11,6 +11,7 @@ import ButtonUpload from '../../Assets/buttons/ButtonUpload';
 import { TouchableOpacity } from 'react-native';
 import ButtonBack from '../../Assets/buttons/ButtonBack';
 import { useNavigation } from '@react-navigation/native';
+import { Image } from 'react-native';
 
 const PageTwo = () => {
   const navigation = useNavigation();
@@ -59,27 +60,29 @@ const PageTwo = () => {
             Kamu terlibat di industri...
           </Text>
           <View style={styles.row}>
-            <TouchableOpacity
-              style={{
-                width: 150,
-                height: 200,
-                backgroundColor: DarkColors.primary,
-                borderRadius: 25,
-                marginRight: 25
-              }}
-            >
-              <Text>Kreatif</Text>
+            <TouchableOpacity>
+              <Image
+                source={require('../../Assets/images/role_kreatif.png')}
+                style={{
+                  width: 150,
+                  height: 200,
+                  backgroundColor: DarkColors.primary,
+                  borderRadius: 25,
+                  marginRight: 25
+                }}
+              />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                width: 150,
-                height: 200,
-                backgroundColor: DarkColors.primary,
-                borderRadius: 25,
-                marginRight: 25
-              }}
-            >
-              <Text>Bisnis</Text>
+            <TouchableOpacity>
+              <Image
+                source={require('../../Assets/images/role_bisnis.png')}
+                style={{
+                  width: 150,
+                  height: 200,
+                  backgroundColor: DarkColors.primary,
+                  borderRadius: 25,
+                  marginRight: 25
+                }}
+              />
             </TouchableOpacity>
           </View>
           <TouchableOpacity 
