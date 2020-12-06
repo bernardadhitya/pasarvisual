@@ -49,7 +49,7 @@ const ServicesCard = (props) => {
               color: DarkColors["text-primary"],
               marginTop: 10
             }}>
-              $100-$200
+              Rp1.000.000-Rp2000.000
             </Text>
           </View>
           {edit ? <View style={{

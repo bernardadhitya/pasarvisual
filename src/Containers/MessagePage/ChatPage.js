@@ -84,7 +84,7 @@ const ChatPage = () => {
               fonstFamily: 'Regular',
               fontSize: 21,
               color:'white'
-            }}>Name</Text>
+            }}>Nama</Text>
           </View>
           <ScrollView>
             { renderChatBubble('self', 'Hello!') }

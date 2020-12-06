@@ -38,7 +38,7 @@ const PageThree = () => {
               fontSize: 42
             }}
           >
-            Before
+            Sebelum
           </Text>
           <Text
             style={{
@@ -47,7 +47,7 @@ const PageThree = () => {
               fontSize: 42
             }}
           >
-            We Start...
+            Kita Mulai...
           </Text>
           <Text style={{
             marginTop: 30,
@@ -56,7 +56,7 @@ const PageThree = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Select topics you are interested in
+            Pilih topik yang kamu suka
           </Text>
           <View style={{
             marginTop: 4,
@@ -85,7 +85,7 @@ const PageThree = () => {
               fontSize: 16,
               padding: 8
             }}>
-              Done
+              Selesai
             </Text>
           </TouchableOpacity>
           <View style={{height: 200}}></View>

@@ -38,7 +38,7 @@ const PageTwo = () => {
               fontSize: 42
             }}
           >
-            Before
+            Sebelum
           </Text>
           <Text
             style={{
@@ -47,7 +47,7 @@ const PageTwo = () => {
               fontSize: 42
             }}
           >
-            We Start...
+            Kita Mulai...
           </Text>
           <Text style={{
             marginTop: 30,
@@ -56,7 +56,7 @@ const PageTwo = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            What is your role?
+            Kamu terlibat di industri...
           </Text>
           <View style={styles.row}>
             <TouchableOpacity
@@ -68,7 +68,7 @@ const PageTwo = () => {
                 marginRight: 25
               }}
             >
-              <Text>Creative</Text>
+              <Text>Kreatif</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -79,7 +79,7 @@ const PageTwo = () => {
                 marginRight: 25
               }}
             >
-              <Text>Business</Text>
+              <Text>Bisnis</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity 
@@ -98,7 +98,7 @@ const PageTwo = () => {
               fontSize: 16,
               padding: 8
             }}>
-              Next
+              Lanjut
             </Text>
           </TouchableOpacity>
           <View style={{height: 200}}></View>

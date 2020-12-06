@@ -37,7 +37,7 @@ const ChatCard = () => {
                   fontSize: 16
                 }}
               >
-                Name
+                Nama
               </Text>
             </View>
             <View style={{

@@ -100,7 +100,7 @@ const EditServicesPage = (props) => {
               marginTop: 50
             }}
           >
-            Services
+            Layanan
           </Text>
           <ServicesCard edit handleClick={() => {
             setMode('edit'); sheetRef.current.snapTo(1)

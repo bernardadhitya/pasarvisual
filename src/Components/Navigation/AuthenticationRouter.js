@@ -48,7 +48,7 @@ const Login = () => {
           }}
           value={email}
           label='Email'
-          placeholder='Place your email'
+          placeholder='Masukkan email'
           onChangeText={nextValue => setEmail(nextValue)}
         />
         <Input
@@ -58,7 +58,7 @@ const Login = () => {
           }}
           value={password}
           label='Password'
-          placeholder='Place your Text'
+          placeholder='Masukkan password'
           secureTextEntry={true}
           onChangeText={nextValue => setPassword(nextValue)}
         />
@@ -84,7 +84,7 @@ const Login = () => {
             color: DarkColors["text-primary"]
           }}
         >
-          Login
+          Masuk
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -103,7 +103,7 @@ const Login = () => {
         <Text style={{
           fontFamily: 'Medium', fontSize: 16, color: DarkColors['primary']
         }}>
-          Don't have account, sign me up!
+          Belum ada akun, daftarkan saya!
         </Text>
       </TouchableOpacity>
     </View>
@@ -115,7 +115,7 @@ function Register({ navigation, route }) {
     <Center>
       <Text>route name: {route.name}</Text>
       <Button
-        title="go to login"
+        title="Ke halaman masuk"
         onPress={() => {
           navigation.navigate("Login");
           // navigation.goBack()

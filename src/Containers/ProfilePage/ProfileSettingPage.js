@@ -87,7 +87,7 @@ const ProfileSettingPage = () => {
               fontSize: 16,
               fontFamily: 'Regular',
               color: DarkColors["text-primary"]
-            }}>Logout</Text>
+            }}>Keluar</Text>
           </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
