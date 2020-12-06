@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -11,10 +11,15 @@ import Animated from 'react-native-reanimated';
 import { useMemoOne } from 'use-memo-one';
 import CreativePostDetail from '../../Components/PostPanel/CreativePostDetail';
 import { useNavigation } from '@react-navigation/native';
+import { getAllDMPost } from '../../../firebase';
+import { TouchableOpacity } from 'react-native';
 
 
 const HomePage = () => {
   const navigation = useNavigation();
+  const [posts, setPosts] = useState([]);
+  const [selectedPost, setSelectedPost] = useState({});
+  const [trigger, setTrigger] = useState(0);
   let [fontsLoaded] = useFonts(Fonts);
 
   let sheetRef = useRef(null);
@@ -25,7 +30,38 @@ const HomePage = () => {
     navigation.navigate('OtherProfileScreen');
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedAllPosts = await getAllDMPost();
+      setPosts(fetchedAllPosts);
+    }
+    fetchData();
+  }, [trigger]);
+
+  const renderHomePosts = () => {
+    return posts.map(post => {
+      const {dataImage, dataPost} = post;
+      const {title, topics, like, desc, userId, userName} = dataPost;
+      return (
+        <HomeCard
+          role='creative'
+          image={dataImage}
+          handleClick={() => {
+            setSelectedPost({image: dataImage, ...dataPost});
+            sheetRef.current.snapTo(1)
+          }}
+          title={title}
+          description={desc}
+          authorId={userId}
+          authorName={userName}
+        />
+      )
+    })
+  }
+
   const renderContent = () => {
+    if (!selectedPost) return;
+    const {title, desc, topics, image, userName} = selectedPost;
     return (
       <View
         style={{
@@ -34,7 +70,15 @@ const HomePage = () => {
           height: 700
         }}
       >
-        <CreativePostDetail role='creative' handleClick={viewProfile}/>
+        <CreativePostDetail
+          role='creative'
+          handleClick={viewProfile}
+          title={title}
+          description={desc}
+          topics={topics}
+          image={image}
+          authorName={userName}
+        />
       </View>
     )
   };
@@ -77,47 +121,20 @@ const HomePage = () => {
           borderRadius={16}
         />
         <ScrollView style={{paddingHorizontal: 20, paddingTop: 50}}>
-          <Text
-            style={{
-              color: DarkColors["text-primary"],
-              fontFamily: 'Bold',
-              fontSize: 42
-            }}
+          <TouchableOpacity
+            onPress={() => setTrigger(trigger + 1)}
           >
-            Feeds
-          </Text>
-          <HomeCard
-            role='creative'
-            image='Sample image'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='Weekly progress'
-            description='Weekly progress on dieting'
-          />
-          <HomeCard
-            role='business'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='We are looking for talents'
-            description='We’re interested in your ideas and would be glad to build something bigger out of it. Share your ideas about features/design and we’ll bring them on to our full case of this product design.'
-          />
-          <HomeCard
-            role='creative'
-            image='Sample image'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='Weekly progress'
-            description='Weekly progress on dieting'
-          />
-          <HomeCard
-            role='business'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='We are looking for talents'
-            description='We’re interested in your ideas and would be glad to build something bigger out of it. Share your ideas about features/design and we’ll bring them on to our full case of this product design.'
-          />
-          <HomeCard
-            role='business'
-            handleClick={() => sheetRef.current.snapTo(1)}
-            title='We are looking for talents'
-            description='We’re interested in your ideas and would be glad to build something bigger out of it. Share your ideas about features/design and we’ll bring them on to our full case of this product design.'
-          />
+            <Text
+              style={{
+                color: DarkColors["text-primary"],
+                fontFamily: 'Bold',
+                fontSize: 42
+              }}
+            >
+              Beranda
+            </Text>
+          </TouchableOpacity>
+          { renderHomePosts() }
           <View style={{height: 100}}></View>
         </ScrollView>
         {renderShadow()}

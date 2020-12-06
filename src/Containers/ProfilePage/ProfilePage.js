@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -14,8 +14,10 @@ import ButtonBack from '../../Assets/buttons/ButtonBack';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import IconSetting from '../../Assets/icons/IconSetting';
+import { AuthContext } from '../../Helper/AuthProvider';
 
 const ProfilePage = () => {
+  const { user } = useContext(AuthContext);
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -79,7 +81,7 @@ const ProfilePage = () => {
               <IconSetting/>
             </TouchableOpacity>
           </View>
-          <ProfilePanel isSelf handleClick={() => sheetRef.current.snapTo(1)}/>
+          <ProfilePanel user={user} isSelf handleClick={() => sheetRef.current.snapTo(1)}/>
         </ScrollView>
         {renderShadow()}
       </SafeAreaView>

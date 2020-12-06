@@ -8,11 +8,11 @@ import { TouchableOpacity } from 'react-native';
 import { DarkColors } from '../../Constants/Colors';
 
 const TopicCard = (props) => {
-  const { topic } = props;
+  const { topic, selected } = props;
   let [fontsLoaded] = useFonts(Fonts);
 
-  return fontsLoaded ? (
-    <TouchableOpacity style={{
+  const renderTopicCard = () => {
+    return !selected ? <View style={{
       backgroundColor: DarkColors["sub-primary"],
       padding: 10,
       borderRadius: 10,
@@ -25,8 +25,24 @@ const TopicCard = (props) => {
       }}>
         { topic }
       </Text>
-    </TouchableOpacity>
-  ) : <AppLoading/>;
+    </View> : <View style={{
+      backgroundColor: DarkColors["primary"],
+      padding: 10,
+      borderRadius: 10,
+      marginBottom: 10,
+      marginRight: 10
+    }}>
+      <Text style={{
+        fontFamily: 'Semibold',
+        color: DarkColors["text-primary"]
+      }}>
+        { topic }
+      </Text>
+    </View>
+  }
+
+
+  return fontsLoaded ? renderTopicCard() : <AppLoading/>;
 }
 
 const styles = StyleSheet.create({

@@ -13,6 +13,7 @@ import { DarkColors } from "../../Constants/Colors";
 import PageOne from "../../Containers/RegisterPage/PageOne";
 import PageTwo from "../../Containers/RegisterPage/PageTwo";
 import PageThree from "../../Containers/RegisterPage/PageThree";
+import { fakeBusinessUser, fakeCreativeUser } from "../../Constants/Users";
 
 const Stack = createStackNavigator();
 
@@ -25,9 +26,9 @@ const Login = () => {
   const [password, setPassword] = React.useState('');
 
   const checkLogin = () => {
-    if (email === 'naomi@gmail.com'){
+    if (email === fakeBusinessUser.email){
       loginAsBusiness();
-    } else {
+    } else if (email === fakeCreativeUser.email) {
       loginAsCreative();
     }
   }

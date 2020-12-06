@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -7,10 +7,22 @@ import { ScrollView } from 'react-native';
 import { DarkColors } from '../../Constants/Colors';
 import ChatPanel from '../../Components/MessagePanel/ChatPanel';
 import OffersPanel from '../../Components/MessagePanel/OffersPanel';
+import { getProspectTransactionByReceiverId } from '../../../firebase';
+import { AuthContext } from '../../Helper/AuthProvider';
 
 const MessagePage = () => {
+  const { user: { userId }} = useContext(AuthContext);
   const [selectedTabName, setSelectedTabName] = useState('chat');
+  const [offers, setOffers] = useState([]);
   let [fontsLoaded] = useFonts(Fonts);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedOffersByUserId = await getProspectTransactionByReceiverId(userId);
+      setOffers(fetchedOffersByUserId);
+    }
+    fetchData();
+  }, []);
 
   const renderTabButtons = (tabName) => {
     return tabName === selectedTabName ?
@@ -58,7 +70,7 @@ const MessagePage = () => {
   }
 
   const renderMessagePanel = () => {
-    return selectedTabName === 'chat' ? <ChatPanel/> : <OffersPanel/>
+    return selectedTabName === 'chat' ? <ChatPanel/> : <OffersPanel offers={offers}/>
   }
 
   if (!fontsLoaded) {

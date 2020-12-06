@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFonts } from '@use-expo/font';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { Layout } from '@ui-kitten/components';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -11,7 +11,7 @@ import IconHeart from '../../Assets/icons/IconHeart';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeCard = (props) => {
-  const { role, image, handleClick, title, description } = props;
+  const { role, image, handleClick, title, description, authorId, authorName } = props;
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -25,7 +25,10 @@ const HomeCard = (props) => {
       }}
     >
       <TouchableOpacity
-        onPress={() => navigation.navigate('OtherProfileScreen')}
+        onPress={() => navigation.navigate('OtherProfileScreen', {
+          userId: authorId,
+          userName: authorName
+        })}
         style={{marginBottom: 15}}
       >
         <View style={styles.row}>
@@ -40,7 +43,7 @@ const HomeCard = (props) => {
               width: 40
             }}>
               <Text>
-                Test
+                {authorName ? authorName.charAt(0) : ''}
               </Text>
             </View>
           </View>
@@ -52,7 +55,7 @@ const HomeCard = (props) => {
                 fontSize: 16
               }}
             >
-              Name
+              {authorName}
             </Text>
             <Text
               style={{
@@ -73,12 +76,7 @@ const HomeCard = (props) => {
             marginBottom: 15
           }}
         >
-          <View style={{
-            height: 200,
-            backgroundColor: DarkColors["sub-secondary"]
-          }}>
-            
-          </View>
+          <Image source={{ uri: image }} style={{height: 200}}/>
         </TouchableOpacity>
         : null
       }

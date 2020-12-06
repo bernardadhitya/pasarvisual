@@ -8,7 +8,7 @@ import ButtonLogout from '../../Assets/buttons/ButtonLogout';
 import { AuthContext } from '../../Helper/AuthProvider';
 
 const ProfileSettingPage = () => {
-  const { user: { username }, logout } = useContext(AuthContext);
+  const { user: { name, email }, logout } = useContext(AuthContext);
   let [fontsLoaded] = useFonts(Fonts);
 
   if (!fontsLoaded) {
@@ -51,7 +51,7 @@ const ProfileSettingPage = () => {
                     fontSize: 16
                   }}
                 >
-                  Name
+                  { name }
                 </Text>
                 <Text
                   style={{
@@ -60,7 +60,7 @@ const ProfileSettingPage = () => {
                     fontSize: 14
                   }}
                 >
-                  bernard.adhitya@gmail.com
+                  { email }
                 </Text>
               </View>
             </View>

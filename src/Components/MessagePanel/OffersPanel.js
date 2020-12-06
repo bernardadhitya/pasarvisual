@@ -6,15 +6,25 @@ import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
 import OffersCard from './OffersCard';
 
-const OffersPanel = () => {
+const OffersPanel = (props) => {
+  const { offers } = props;
   let [fontsLoaded] = useFonts(Fonts);
 
   return fontsLoaded ? (
     <View>
-      <OffersCard/>
-      <OffersCard/>
-      <OffersCard/>
-      <OffersCard/>
+      {offers.map(offer => {
+        const { bidPrice, message, receiverId, senderId, senderName, status } = offer;
+        return (
+          <OffersCard
+            bidPrice={bidPrice}
+            message={message}
+            receiverId={receiverId}
+            senderId={senderId}
+            senderName={senderName}
+            status={status}
+          />
+        )
+      })}
     </View>
   ) : <AppLoading/>;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFonts } from '@use-expo/font';
 import { View, Text, StyleSheet } from 'react-native';
 import { Layout } from '@ui-kitten/components';
@@ -9,11 +9,23 @@ import { DarkColors } from '../../Constants/Colors';
 import { TouchableOpacity } from 'react-native';
 import ShowcasePanel from '../ShowcasePanel/ShowcasePanel';
 import { useNavigation } from '@react-navigation/native';
+import { getDmPostByUserId } from '../../../firebase';
 
 const ProfilePanel = (props) => {
   const navigation = useNavigation();
-  const { handleClick, isSelf } = props;
+  const { handleClick, isSelf, user } = props;
+  const { userId, name } = user;
   let [fontsLoaded] = useFonts(Fonts);
+  const [posts, setPosts] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedPosts = await getDmPostByUserId(userId);
+      console.log('fetched posts ===>', fetchedPosts);
+      setPosts(fetchedPosts);
+    }
+    fetchData();
+  }, []);
 
   const renderOthersOption = () => {
     return (
@@ -131,12 +143,12 @@ const ProfilePanel = (props) => {
           fontFamily: 'Bold',
           fontSize: 21
         }}>
-          Bernard Adhitya
+          { name }
         </Text>
       </View>
       { renderOptions() }
       <View style={{ height: 10 }}></View>
-      <ShowcasePanel handleClick={handleClick}/>
+      {posts ? <ShowcasePanel posts={posts} handleClick={handleClick}/> : null}
       <View style={{height: 100}}></View>
     </ScrollView>
   ) : <AppLoading/>;

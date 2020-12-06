@@ -7,10 +7,47 @@ import { AppLoading } from 'expo';
 import { ScrollView } from 'react-native';
 import ShowcaseCard from './ShowcaseCard';
 import { TouchableOpacity } from 'react-native';
+import { Image } from 'react-native';
+import { DarkColors } from '../../Constants/Colors';
 
 const ShowcasePanel = (props) => {
-  const { handleClick } = props;
+  const { handleClick, posts } = props;
   let [fontsLoaded] = useFonts(Fonts);
+
+  const renderPosts = () => {
+    if (!posts) return;
+    return posts.map((post, index) => {
+      const { dataImage } = post; 
+      return index % 2 === 0 ?
+        <TouchableOpacity onPress={() => handleClick(post)}>
+          <Image
+            source={{ uri: dataImage }}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </TouchableOpacity> :
+        <>
+          <View style={{width: 20}}></View>
+          <TouchableOpacity onPress={() => handleClick(post)}>
+            <Image
+              source={{ uri: dataImage }}
+              style={{
+                marginTop: 20,
+                width: 175,
+                height: 220,
+                borderRadius: 25,
+                backgroundColor: DarkColors["sub-secondary"],
+              }}
+            />
+          </TouchableOpacity>
+        </>
+    })
+  }
 
   return fontsLoaded ? (
     <ScrollView>
@@ -19,34 +56,7 @@ const ShowcasePanel = (props) => {
         justifyContent: 'flex-start',
         flexWrap: 'wrap'
       }}>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
-        <View style={{width: 20}}></View>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
-        <View style={{width: 20}}></View>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
-        <View style={{width: 20}}></View>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
-        <View style={{width: 20}}></View>
-        <TouchableOpacity onPress={() => handleClick()}>
-          <ShowcaseCard/>
-        </TouchableOpacity>
+        { renderPosts() }
       </View>
     </ScrollView>
   ) : <AppLoading/>;

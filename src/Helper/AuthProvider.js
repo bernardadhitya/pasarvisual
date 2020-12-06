@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AsyncStorage } from "react-native";
+import { fakeBusinessUser, fakeCreativeUser } from "../Constants/Users";
 
 export const AuthContext = React.createContext({
   user: null,
@@ -15,20 +16,12 @@ export const AuthProvider= ({ children }) => {
       value={{
         user,
         loginAsCreative: () => {
-          const fakeCreative = { 
-            username: "Bernard",
-            role: 'creative'
-          };
-          setUser(fakeCreative);
-          AsyncStorage.setItem("user", JSON.stringify(fakeCreative));
+          setUser(fakeCreativeUser);
+          AsyncStorage.setItem("user", JSON.stringify(fakeCreativeUser));
         },
         loginAsBusiness: () => {
-          const fakeBusiness = {
-            username: "Naomi",
-            role: 'business'
-          };
-          setUser(fakeBusiness);
-          AsyncStorage.setItem("user", JSON.stringify(fakeBusiness));
+          setUser(fakeBusinessUser);
+          AsyncStorage.setItem("user", JSON.stringify(fakeBusinessUser));
         },
         register: (userData) => {
           const { userName, role } = userData;

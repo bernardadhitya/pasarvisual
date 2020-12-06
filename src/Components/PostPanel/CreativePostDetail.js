@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFonts } from '@use-expo/font';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
 import { ScrollView } from 'react-native';
 import { DarkColors } from '../../Constants/Colors';
+import { AuthContext } from '../../Helper/AuthProvider';
+import { Image } from 'react-native';
 
 const CreativePostDetail = (props) => {
   let [fontsLoaded] = useFonts(Fonts);
-  const { role, handleClick } = props;
+  const { role, handleClick, title, description, topics, image, authorName } = props;
 
   const renderButton = () => {
     return (
@@ -39,20 +41,14 @@ const CreativePostDetail = (props) => {
       paddingHorizontal: 10
     }}>
       <Text style={{
-        paddingTop: 15,
+        paddingVertical: 15,
         fontFamily: 'Bold',
-        fontSize: 36,
+        fontSize: 24,
         color: DarkColors["text-primary"]
       }}>
-        Test
+        {title}
       </Text>
-      <View style={{
-        height: 200,
-        backgroundColor: DarkColors["secondary"],
-        marginTop: 15,
-        borderRadius: 25
-      }}>
-      </View>
+      <Image source={{ uri: image }} style={{height: 200}}/>
       <Text style={{
         marginTop: 15,
         fontFamily: 'Regular',
@@ -68,7 +64,7 @@ const CreativePostDetail = (props) => {
         color: DarkColors["text-primary"],
         marginBottom: 15
       }}>
-        We’re interested in your ideas and would be glad to build something bigger out of it. Share your ideas about features/design and we’ll bring them on to our full case of this product design.
+        {description}
       </Text>
       <TouchableOpacity style={{marginBottom: 15}}>
         <View style={styles.row}>
@@ -82,8 +78,8 @@ const CreativePostDetail = (props) => {
               height: 40,
               width: 40
             }}>
-              <Text>
-                Test
+              <Text style={{color: DarkColors["text-primary"]}}>
+                {authorName ? authorName.charAt(0) : ''}
               </Text>
             </View>
           </View>
@@ -95,7 +91,7 @@ const CreativePostDetail = (props) => {
                 fontSize: 16
               }}
             >
-              Name
+              {authorName}
             </Text>
             <Text
               style={{

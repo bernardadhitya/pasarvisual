@@ -5,6 +5,7 @@ import { AppLoading } from 'expo';
 import { useFonts } from '@use-expo/font';
 import { ScrollView } from 'react-native';
 import TopicCard from './TopicCard';
+import { Topics } from '../../Constants/Topics';
 
 const FilterTopicsPanel = () => {
   let [fontsLoaded] = useFonts(Fonts);
@@ -20,10 +21,11 @@ const FilterTopicsPanel = () => {
         }}
       >
         <ScrollView horizontal>
-          <TopicCard topic='Foto Produk'/>
-          <TopicCard topic='Video Promosi'/>
-          <TopicCard topic='Desain Poster'/>
-          <TopicCard topic='Desain Kemasan'/>
+          {Topics.map(topic => {
+            return(
+              <TopicCard topic={topic}/>
+            )
+          })}
         </ScrollView>
       </SafeAreaView>
     )

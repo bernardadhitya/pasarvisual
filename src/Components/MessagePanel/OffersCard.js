@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFonts } from '@use-expo/font';
 import { View, Text, StyleSheet } from 'react-native';
 import { Layout } from '@ui-kitten/components';
@@ -8,8 +8,11 @@ import { DarkColors } from '../../Constants/Colors';
 import { TouchableOpacity } from 'react-native';
 import ButtonReject from '../../Assets/buttons/ButtonReject';
 import ButtonAccept from '../../Assets/buttons/ButtonAccept';
+import { getUserById } from '../../../firebase';
 
-const OffersCard = () => {
+const OffersCard = (props) => {
+  const { bidPrice, message, receiverId, senderId, senderName, status } = props;
+  const [sender, setSender] = useState({});
   let [fontsLoaded] = useFonts(Fonts);
 
   return fontsLoaded ? (
@@ -25,8 +28,8 @@ const OffersCard = () => {
             height: 40,
             width: 40
           }}>
-            <Text>
-              Test
+            <Text style={{color: DarkColors["text-primary"]}}>
+              {senderName.charAt(0)}
             </Text>
           </View>
         </View>
@@ -40,7 +43,7 @@ const OffersCard = () => {
                   fontSize: 16
                 }}
               >
-                Name
+                { senderName }
               </Text>
             </View>
             <View style={{
@@ -74,7 +77,20 @@ const OffersCard = () => {
                   fontSize: 14
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                { message }
+              </Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={{marginTop: 10}}>
+              <Text
+                style={{
+                  color: DarkColors["text-secondary"],
+                  fontFamily: 'Regular',
+                  fontSize: 14
+                }}
+              >
+                { 'Budget', bidPrice }
               </Text>
             </View>
           </View>

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -13,8 +13,14 @@ import { DarkColors } from '../../Constants/Colors';
 import ButtonBack from '../../Assets/buttons/ButtonBack';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { getUserById } from '../../../firebase';
 
-const OthersProfilePage = () => {
+const OthersProfilePage = (props) => {
+  const { userId, userName } = props.route.params;
+  const [selectedPost, setSelectedPost] = useState(null);
+  const otherUser = {
+    userId, name: userName
+  }
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -22,6 +28,10 @@ const OthersProfilePage = () => {
   let fall = useMemoOne(() => new Animated.Value(1), []);
 
   const renderContent = () => {
+    if (!selectedPost) return;
+    const {dataImage, dataPost} = selectedPost;
+    const {desc, title, topics, userName, userId} = dataPost;
+    //const { role, handleClick, title, description, topics, image, authorName }
     return (
       <View
         style={{
@@ -30,7 +40,14 @@ const OthersProfilePage = () => {
           height: 700
         }}
       >
-        <CreativePostDetail role='creative'/>
+        <CreativePostDetail
+          role='creative'
+          title={title}
+          description={desc}
+          topics={topics}
+          image={dataImage}
+          authorName={userName}
+        />
       </View>
     )
   };
@@ -78,7 +95,13 @@ const OthersProfilePage = () => {
           >
             <ButtonBack/>
           </TouchableOpacity>
-          <ProfilePanel handleClick={() => sheetRef.current.snapTo(1)}/>
+          <ProfilePanel
+            user={otherUser}
+            handleClick={(post) => {
+              setSelectedPost(post)
+              sheetRef.current.snapTo(1)
+            }}
+          />
         </ScrollView>
         {renderShadow()}
       </SafeAreaView>
