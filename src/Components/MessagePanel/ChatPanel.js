@@ -14,35 +14,14 @@ const ChatPanel = () => {
 
   return fontsLoaded ? (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', {name: 'Ashley Stewart'})}>
+        <ChatCard name='Ashley Stewart' lastMessage='Halo!'/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', {name: 'Vickie Thomas'})}>
+        <ChatCard name='Vickie Thomas' lastMessage='Saya tertarik dengan...'/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen')}>
-        <ChatCard/>
+      <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', {name: 'Gilbert Patterson'})}>
+        <ChatCard name='Gilbert Patterson' lastMessage='Terima kasih!'/>
       </TouchableOpacity>
     </View>
   ) : <AppLoading/>;
