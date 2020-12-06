@@ -19,11 +19,10 @@ export const fakeBusinessUser = {
 }
 
 export const fakeCreativeUser = {
-  email: 'James_Hughes@gmail.com',
-  name: 'James Hughes',
-  phoneNumber: '08123456789',
+  email: 'harvey.ward@gmail.com',
+  name: 'Harver Warden',
+  phoneNumber: '081124556789',
   prefferedTopics: ['Website', 'Desain Kemasan', 'Desain Poster'],
-  profilePicture: 'designdigital.jpg',
   role: 'creative',
-  userId: 'WVRgASco5rKhfWV6PyaB',
+  userId: '5dqudyxYIGqVCDQ65XjR',
 }

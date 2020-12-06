@@ -17,6 +17,7 @@ import { getUserById } from '../../../firebase';
 
 const OthersProfilePage = (props) => {
   const { userId, userName } = props.route.params;
+  const [selectedPost, setSelectedPost] = useState(null);
   const otherUser = {
     userId, name: userName
   }
@@ -27,6 +28,10 @@ const OthersProfilePage = (props) => {
   let fall = useMemoOne(() => new Animated.Value(1), []);
 
   const renderContent = () => {
+    if (!selectedPost) return;
+    const {dataImage, dataPost} = selectedPost;
+    const {desc, title, topics, userName, userId} = dataPost;
+    //const { role, handleClick, title, description, topics, image, authorName }
     return (
       <View
         style={{
@@ -35,7 +40,14 @@ const OthersProfilePage = (props) => {
           height: 700
         }}
       >
-        <CreativePostDetail role='creative'/>
+        <CreativePostDetail
+          role='creative'
+          title={title}
+          description={desc}
+          topics={topics}
+          image={dataImage}
+          authorName={userName}
+        />
       </View>
     )
   };
@@ -85,7 +97,10 @@ const OthersProfilePage = (props) => {
           </TouchableOpacity>
           <ProfilePanel
             user={otherUser}
-            handleClick={() => sheetRef.current.snapTo(1)}
+            handleClick={(post) => {
+              setSelectedPost(post)
+              sheetRef.current.snapTo(1)
+            }}
           />
         </ScrollView>
         {renderShadow()}
