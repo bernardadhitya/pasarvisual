@@ -102,16 +102,22 @@ const EditServicesPage = (props) => {
           >
             Services
           </Text>
-          <ServicesCard edit handleClick={() => {
+          <ServicesCard 
+            serviceName='photo'
+            edit
+            handleClick={() => {
             setMode('edit'); sheetRef.current.snapTo(1)
           }}/>
-          <ServicesCard edit handleClick={() => {
+          <ServicesCard 
+            serviceName='video'
+            edit
+            handleClick={() => {
             setMode('edit'); sheetRef.current.snapTo(1)
           }}/>
-          <ServicesCard edit handleClick={() => {
-            setMode('edit'); sheetRef.current.snapTo(1)
-          }}/>
-          <ServicesCard edit handleClick={() => {
+          <ServicesCard 
+            serviceName='design'
+            edit
+            handleClick={() => {
             setMode('edit'); sheetRef.current.snapTo(1)
           }}/>
           <View style={{height: 100}}></View>

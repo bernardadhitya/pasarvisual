@@ -152,10 +152,9 @@ const ViewServicesPage = (props) => {
           >
             Services
           </Text>
-          <ServicesCard />
-          <ServicesCard />
-          <ServicesCard />
-          <ServicesCard />
+          <ServicesCard serviceName='photo'/>
+          <ServicesCard serviceName='video'/>
+          <ServicesCard serviceName='design'/>
           <TouchableOpacity 
             style={{
               backgroundColor: DarkColors.primary,
