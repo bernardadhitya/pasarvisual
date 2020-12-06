@@ -136,8 +136,9 @@ const PostPage = () => {
           </Text>
           <Input
             style={{
-              backgroundColor: DarkColors["sub-primary"],
-              borderColor: DarkColors["sub-primary"]
+              backgroundColor: DarkColors["sub-tertiary"],
+              borderColor: DarkColors["sub-tertiary"],
+              color: DarkColors['text-secondary']
             }}
             value={title}
             placeholder="Insert title here..."
@@ -156,8 +157,9 @@ const PostPage = () => {
             multiline={true}
             textStyle={{ minHeight: 100 }}
             style={{
-              backgroundColor: DarkColors["sub-primary"],
-              borderColor: DarkColors["sub-primary"]
+              backgroundColor: DarkColors["sub-tertiary"],
+              borderColor: DarkColors["sub-tertiary"],
+              color: DarkColors['text-primary']
             }}
             value={description}
             placeholder="Insert description here..."
@@ -177,8 +179,9 @@ const PostPage = () => {
             <View style={{flex: 1, flexDirection: 'row'}}>
             <Input
               style={{
-                backgroundColor: DarkColors["sub-primary"],
-                borderColor: DarkColors["sub-primary"]
+                backgroundColor: DarkColors["sub-tertiary"],
+                borderColor: DarkColors["sub-tertiary"],
+                color: DarkColors['text-primary']
               }}
               value={minPrice}
               placeholder="Minimum Price..."
@@ -187,8 +190,9 @@ const PostPage = () => {
             <View style={{width: 15}}></View>
             <Input
               style={{
-                backgroundColor: DarkColors["sub-primary"],
-                borderColor: DarkColors["sub-primary"]
+                backgroundColor: DarkColors["sub-tertiary"],
+                borderColor: DarkColors["sub-tertiary"],
+                color: DarkColors['text-primary']
               }}
               value={maxPrice}
               placeholder="Maximum Price..."

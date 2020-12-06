@@ -45,7 +45,8 @@ const AddServicePanel = (props) => {
       </Text>
       <Input style={{
         backgroundColor: DarkColors["sub-tertiary"],
-        borderColor: DarkColors["sub-tertiary"]
+        borderColor: DarkColors["sub-tertiary"],
+        color: DarkColors['text-primary']
       }}
         placeholder="Insert title here..."
       />
@@ -60,7 +61,8 @@ const AddServicePanel = (props) => {
       </Text>
       <Input style={{
         backgroundColor: DarkColors["sub-tertiary"],
-        borderColor: DarkColors["sub-tertiary"]
+        borderColor: DarkColors["sub-tertiary"],
+        color: DarkColors['text-primary']
       }}
         placeholder="Insert estimated price here..."
       />
@@ -78,7 +80,8 @@ const AddServicePanel = (props) => {
         textStyle={{ minHeight: 100 }}
         style={{
           backgroundColor: DarkColors["sub-tertiary"],
-          borderColor: DarkColors["sub-tertiary"]
+          borderColor: DarkColors["sub-tertiary"],
+          color: DarkColors['text-primary']
         }}
         placeholder="Insert description here..."
       />

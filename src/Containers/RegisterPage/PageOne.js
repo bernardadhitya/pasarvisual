@@ -59,8 +59,9 @@ const PageOne = () => {
             Nama Lengkap
           </Text>
           <Input style={{
-            backgroundColor: DarkColors["sub-primary"],
-            borderColor: DarkColors["sub-primary"]
+            backgroundColor: DarkColors["sub-tertiary"],
+            borderColor: DarkColors["sub-tertiary"],
+            color: DarkColors['text-primary']
           }}
             placeholder="Insert title here..."
           />
@@ -74,8 +75,9 @@ const PageOne = () => {
             Email
           </Text>
           <Input style={{
-            backgroundColor: DarkColors["sub-primary"],
-            borderColor: DarkColors["sub-primary"]
+            backgroundColor: DarkColors["sub-tertiary"],
+            borderColor: DarkColors["sub-tertiary"],
+            color: DarkColors['text-primary']
           }}
             placeholder="Insert email here..."
           />
@@ -89,8 +91,9 @@ const PageOne = () => {
             Password
           </Text>
           <Input style={{
-            backgroundColor: DarkColors["sub-primary"],
-            borderColor: DarkColors["sub-primary"]
+            backgroundColor: DarkColors["sub-tertiary"],
+            borderColor: DarkColors["sub-tertiary"],
+            color: DarkColors['text-primary']
           }}
             secureTextEntry={true}
             placeholder="Insert password here..."
@@ -105,8 +108,9 @@ const PageOne = () => {
             Nomor Telepon
           </Text>
           <Input style={{
-            backgroundColor: DarkColors["sub-primary"],
-            borderColor: DarkColors["sub-primary"]
+            backgroundColor: DarkColors["sub-tertiary"],
+            borderColor: DarkColors["sub-tertiary"],
+            color: DarkColors['text-primary']
           }}
             placeholder="Masukkan nomor telepon disini..."
           />

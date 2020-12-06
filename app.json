@@ -21,6 +21,8 @@
       "backgroundColor": "#FFFFFF"
     },
     "android": {
+      "package": "com.blackjack.pasarvisual",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./src/Assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

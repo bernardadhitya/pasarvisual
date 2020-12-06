@@ -24,7 +24,7 @@ const ShowcasePanel = (props) => {
             source={{ uri: dataImage }}
             style={{
               marginTop: 20,
-              width: 175,
+              width: 150,
               height: 220,
               borderRadius: 25,
               backgroundColor: DarkColors["sub-secondary"],
@@ -38,7 +38,7 @@ const ShowcasePanel = (props) => {
               source={{ uri: dataImage }}
               style={{
                 marginTop: 20,
-                width: 175,
+                width: 150,
                 height: 220,
                 borderRadius: 25,
                 backgroundColor: DarkColors["sub-secondary"],

@@ -11,7 +11,8 @@ import { Input } from '@ui-kitten/components';
 import IconSend from '../../Assets/icons/IconSend';
 import { useNavigation } from '@react-navigation/native';
 
-const ChatPage = () => {
+const ChatPage = (props) => {
+  const { name } = props.route.params;
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -84,21 +85,22 @@ const ChatPage = () => {
               fonstFamily: 'Regular',
               fontSize: 21,
               color:'white'
-            }}>Nama</Text>
+            }}>{name}</Text>
           </View>
           <ScrollView>
-            { renderChatBubble('self', 'Hello!') }
-            { renderChatBubble('self', 'How are you?') }
-            { renderChatBubble('others',"I'm fine, how are you") }
-            { renderChatBubble('self', 'Feeling good!') }
-            { renderChatBubble('others', 'Hahaha') }
+            { renderChatBubble('others', 'Halo!') }
+            { renderChatBubble('self', 'Hi, ada yang bisa saya bantu?') }
+            { renderChatBubble('others',"Saya tertarik dengan karya anda, apakah anda tertarik mengambil tawaran saya") }
+            { renderChatBubble('self', 'Akan saya lihat dulu ya') }
+            { renderChatBubble('others', 'Terima kasih!') }
           </ScrollView>
           <View style={{marginBottom: 15, flexDirection: 'row'}}>
             <View style={styles.column}>
               <Input
                 style={{
                   backgroundColor: DarkColors["sub-primary"],
-                  borderColor: DarkColors["sub-primary"]
+                  borderColor: DarkColors["sub-primary"],
+                  color: DarkColors['text-primary']
                 }}
                 placeholder={'Insert your message here...'}
               />

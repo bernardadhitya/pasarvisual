@@ -44,7 +44,8 @@ const Login = () => {
         <Input
           style={{
             backgroundColor: DarkColors["sub-tertiary"],
-            borderColor: DarkColors["sub-tertiary"]
+            borderColor: DarkColors["sub-tertiary"],
+            color: DarkColors['text-primary']
           }}
           value={email}
           label='Email'
@@ -54,7 +55,8 @@ const Login = () => {
         <Input
           style={{
             backgroundColor: DarkColors["sub-tertiary"],
-            borderColor: DarkColors["sub-tertiary"]
+            borderColor: DarkColors["sub-tertiary"],
+            color: DarkColors['text-primary']
           }}
           value={password}
           label='Password'

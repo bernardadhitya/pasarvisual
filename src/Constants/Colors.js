@@ -3,7 +3,7 @@ export const DarkColors = {
   'secondary': '#286053',
   'sub-primary': '#30444E',
   'sub-secondary': '#1A282F',
-  'sub-tertiary': '#2A3C44',
+  'sub-tertiary': '#bac7cc',
   'text-primary': '#FFFFFF',
   'text-secondary': '#96A7AF',
   'background': '#21333B',

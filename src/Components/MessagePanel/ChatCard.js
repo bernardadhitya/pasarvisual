@@ -6,8 +6,9 @@ import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
 import { DarkColors } from '../../Constants/Colors';
 
-const ChatCard = () => {
+const ChatCard = (props) => {
   let [fontsLoaded] = useFonts(Fonts);
+  const {name, lastMessage} = props;
 
   return fontsLoaded ? (
     <View style={{paddingLeft: 6, paddingRight: 0, paddingTop: 15}}>
@@ -23,7 +24,7 @@ const ChatCard = () => {
             width: 40
           }}>
             <Text>
-              Test
+              {name.charAt(0)}
             </Text>
           </View>
         </View>
@@ -37,7 +38,7 @@ const ChatCard = () => {
                   fontSize: 16
                 }}
               >
-                Nama
+                {name}
               </Text>
             </View>
             <View style={{
@@ -71,7 +72,7 @@ const ChatCard = () => {
                   fontSize: 14
                 }}
               >
-                Lorem ipsum dolor amet
+                {lastMessage}
               </Text>
             </View>
             <View style={{
@@ -84,7 +85,9 @@ const ChatCard = () => {
                 paddingTop: 4,
                 backgroundColor: DarkColors.primary,
                 borderRadius: 12,
-                marginRight: 8
+                marginRight: 8,
+                width: 21,
+                height: 21
               }}>
                 <Text
                   style={{

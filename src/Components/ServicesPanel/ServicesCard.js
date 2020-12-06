@@ -10,26 +10,238 @@ import { DarkColors } from '../../Constants/Colors';
 import ButtonEdit from '../../Assets/buttons/ButtonEdit';
 import ButtonDelete from '../../Assets/buttons/ButtonDelete';
 import { TouchableOpacity } from 'react-native';
+import { Image } from 'react-native';
 
 const ServicesCard = (props) => {
-  const { edit, handleClick } = props;
+  const { edit, handleClick, serviceName } = props;
   let [fontsLoaded] = useFonts(Fonts);
+
+  const renderDesignImages = () => {
+    return (
+      <ScrollView horizontal>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/design_1.jpg')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/design_2.jpg')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/design_3.jpg')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/design_4.jpg')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/design_5.jpg')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/design_6.jpg')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+      </ScrollView>
+    )
+  }
+
+  const renderPhotoImages = () => {
+    return (
+      <ScrollView horizontal>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/photo_1.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/photo_2.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/photo_3.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/photo_4.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/photo_5.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+      </ScrollView>
+    )
+  }
+
+  const renderVideoImages = () => {
+    return (
+      <ScrollView horizontal>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/video_1.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/video_2.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/video_3.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+        <View style={{marginRight: 20}}>
+          <Image
+            source={require('../../Assets/images/video_4.png')}
+            style={{
+              marginTop: 20,
+              width: 175,
+              height: 220,
+              borderRadius: 25,
+              backgroundColor: DarkColors["sub-secondary"],
+            }}
+          />
+        </View>
+      </ScrollView>
+    )
+  }
+
+  const renderServiceCardImages = () => {
+    const services = {
+      video: renderVideoImages(),
+      photo: renderPhotoImages(),
+      design: renderDesignImages()
+    }
+    return services[serviceName]
+  }
+
+  const serviceTitle = {
+    video: 'Video Iklan Produk',
+    photo: 'Foto Produk',
+    design: 'Desain Iklan'
+  }
+
+  const serviceDetail = {
+    video: 'Saya membuat video produk untuk kebutuhan anda. Cukup sediakan konsep dan produk anda, dan saya akan buatkan video yang mampu menarik lebih banyak pengguna untuk menggunakan produk kalian',
+    photo: 'Saya membuat foto produk untuk kebutuhan anda. Cukup sediakan konsep dan produk anda, dan saya akan buatkan foto yang mampu menarik lebih banyak pengguna untuk menggunakan produk kalian',
+    design: 'Saya membuat desain untuk kebutuhan anda. Cukup sediakan konsep dan produk anda, dan saya akan buatkan desain yang mampu menarik lebih banyak pengguna untuk menggunakan produk kalian'
+  }
 
   return fontsLoaded ? (
     <View style={{marginTop: 15}}>
       <ScrollView horizontal>
-        <View style={{marginRight: 20}}>
-          <ShowcaseCard/>
-        </View>
-        <View style={{marginRight: 20}}>
-          <ShowcaseCard/>
-        </View>
-        <View style={{marginRight: 20}}>
-          <ShowcaseCard/>
-        </View>
-        <View style={{marginRight: 20}}>
-          <ShowcaseCard/>
-        </View>
+        {renderServiceCardImages()}
       </ScrollView>
       <View style={{
         marginTop: 15
@@ -41,7 +253,7 @@ const ServicesCard = (props) => {
               fontSize: 18,
               color: DarkColors["text-secondary"]
             }}>
-              Foto Produk
+              {serviceTitle[serviceName]}
             </Text>
             <Text style={{
               fontFamily: 'Regular',
@@ -49,7 +261,7 @@ const ServicesCard = (props) => {
               color: DarkColors["text-primary"],
               marginTop: 10
             }}>
-              Rp1.000.000-Rp2000.000
+              Rp.500.000 - Rp.2.000.000
             </Text>
           </View>
           {edit ? <View style={{
@@ -75,7 +287,7 @@ const ServicesCard = (props) => {
           fontSize: 16,
           color: DarkColors["text-secondary"]
         }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        {serviceDetail[serviceName]}
         </Text>
       </View>
     </View>

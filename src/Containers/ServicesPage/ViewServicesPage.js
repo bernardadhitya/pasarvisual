@@ -56,7 +56,8 @@ const ViewServicesPage = (props) => {
             textStyle={{ minHeight: 100 }}
             style={{
               backgroundColor: DarkColors["sub-tertiary"],
-              borderColor: DarkColors["sub-tertiary"]
+              borderColor: DarkColors["sub-tertiary"],
+              color: DarkColors['text-primary']
             }}
             placeholder="Insert description here..."
           />
@@ -71,7 +72,8 @@ const ViewServicesPage = (props) => {
           </Text>
           <Input style={{
             backgroundColor: DarkColors["sub-tertiary"],
-            borderColor: DarkColors["sub-tertiary"]
+            borderColor: DarkColors["sub-tertiary"],
+            color: DarkColors['text-primary']
           }}
             placeholder="Insert budget here..."
           />
@@ -152,10 +154,9 @@ const ViewServicesPage = (props) => {
           >
             Layanan
           </Text>
-          <ServicesCard />
-          <ServicesCard />
-          <ServicesCard />
-          <ServicesCard />
+          <ServicesCard serviceName='photo'/>
+          <ServicesCard serviceName='video'/>
+          <ServicesCard serviceName='design'/>
           <TouchableOpacity 
             style={{
               backgroundColor: DarkColors.primary,
