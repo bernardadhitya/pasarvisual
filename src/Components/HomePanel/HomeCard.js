@@ -105,7 +105,7 @@ const HomeCard = (props) => {
                     fontSize: 18
                   }}
                 >
-                  40 likes
+                  40
                 </Text>
               </> : null
             }
@@ -137,7 +137,7 @@ const HomeCard = (props) => {
             fontFamily: 'Bold',
             fontSize: 16,
             padding: 8
-          }}>More Details</Text>
+          }}>Info Lebih Lanjut</Text>
         </TouchableOpacity>
         : null
       }

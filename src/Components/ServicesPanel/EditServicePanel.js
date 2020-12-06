@@ -31,7 +31,7 @@ const EditServicePanel = (props) => {
           fontSize: 42
         }}
       >
-        Service
+        Layanan
       </Text>
       <Text style={{
         marginTop: 30,
@@ -40,14 +40,14 @@ const EditServicePanel = (props) => {
         fontSize: 18,
         color: DarkColors["text-secondary"]
       }}>
-        Title
+        Judul
       </Text>
       <Input style={{
         backgroundColor: DarkColors["sub-tertiary"],
         borderColor: DarkColors["sub-tertiary"],
         color: DarkColors['text-primary']
       }}
-        placeholder="Insert title here..."
+        placeholder="Masukkan judul disini..."
       />
       <Text style={{
         marginTop: 30,
@@ -56,7 +56,7 @@ const EditServicePanel = (props) => {
         fontSize: 18,
         color: DarkColors["text-secondary"]
       }}>
-        Estimated Price
+        Perkiraan harga
       </Text>
       <Input style={{
         backgroundColor: DarkColors["sub-tertiary"],
@@ -72,7 +72,7 @@ const EditServicePanel = (props) => {
         fontSize: 18,
         color: DarkColors["text-secondary"]
       }}>
-        Description
+        Deskripsi
       </Text>
       <Input
         multiline={true}
@@ -90,7 +90,7 @@ const EditServicePanel = (props) => {
         fontSize: 18,
         color: DarkColors["text-secondary"]
       }}>
-        Upload Media
+        Unggah Foto
       </Text>
       <TouchableOpacity style={{marginTop: 15}}>
         <ButtonUpload/>
@@ -110,7 +110,7 @@ const EditServicePanel = (props) => {
           fontSize: 16,
           padding: 8
         }}>
-          + Publish
+          + Terbitkan
         </Text>
       </TouchableOpacity>
       <View style={{height: 200}}></View>

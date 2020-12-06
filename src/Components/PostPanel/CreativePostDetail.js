@@ -30,7 +30,7 @@ const CreativePostDetail = (props) => {
         fontSize: 16,
         padding: 8
       }}>
-        { role === 'creative' ? 'See Profile' : 'Message'}
+        { role === 'creative' ? 'Lihat Profil' : 'Pesan'}
       </Text>
     </TouchableOpacity>
     )
@@ -55,7 +55,7 @@ const CreativePostDetail = (props) => {
         fontSize: 14,
         color: DarkColors["text-secondary"]
       }}>
-        Description
+        Deskripsi
       </Text>
       <Text style={{
         marginTop: 15,

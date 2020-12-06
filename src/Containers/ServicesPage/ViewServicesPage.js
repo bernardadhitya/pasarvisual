@@ -40,7 +40,7 @@ const ViewServicesPage = (props) => {
               fontSize: 36
             }}
           >
-            Make Offer
+            Buat Penawaran
           </Text>
           <Text style={{
             marginTop: 15,
@@ -49,7 +49,7 @@ const ViewServicesPage = (props) => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Message
+            Pesan
           </Text>
           <Input
             multiline={true}
@@ -93,7 +93,7 @@ const ViewServicesPage = (props) => {
               fontSize: 16,
               padding: 8
             }}>
-              Post Offer
+              Kirimkan Penawaran
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -152,7 +152,7 @@ const ViewServicesPage = (props) => {
               marginTop: 50
             }}
           >
-            Services
+            Layanan
           </Text>
           <ServicesCard serviceName='photo'/>
           <ServicesCard serviceName='video'/>
@@ -173,7 +173,7 @@ const ViewServicesPage = (props) => {
               fontSize: 16,
               padding: 8
             }}>
-              Make Offer
+              Buat Penawaran
             </Text>
           </TouchableOpacity>
           <View style={{height: 100}}></View>

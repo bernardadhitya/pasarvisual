@@ -45,7 +45,7 @@ const ProfilePanel = (props) => {
               fontFamily: 'Bold',
               fontSize: 16,
               padding: 8
-            }}>Follow</Text>
+            }}>Ikuti</Text>
           </TouchableOpacity>
         </View>
         <View style={{width: 10}}></View>
@@ -64,7 +64,7 @@ const ProfilePanel = (props) => {
               fontFamily: 'Bold',
               fontSize: 16,
               padding: 8
-            }}>Message</Text>
+            }}>Pesan</Text>
           </TouchableOpacity>
         </View>
         <View style={{width: 10}}></View>
@@ -84,7 +84,7 @@ const ProfilePanel = (props) => {
               fontFamily: 'Bold',
               fontSize: 16,
               padding: 8
-            }}>Services</Text>
+            }}>Layanan</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -110,7 +110,7 @@ const ProfilePanel = (props) => {
               fontFamily: 'Bold',
               fontSize: 16,
               padding: 8
-            }}>Edit Services</Text>
+            }}>Edit Layanan</Text>
           </TouchableOpacity>
         </View>
       </View>

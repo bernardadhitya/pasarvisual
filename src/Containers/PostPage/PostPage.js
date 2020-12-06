@@ -114,7 +114,7 @@ const PostPage = () => {
               fontSize: 42
             }}
           >
-            Create
+            Buat
           </Text>
           <Text
             style={{
@@ -123,7 +123,7 @@ const PostPage = () => {
               fontSize: 42
             }}
           >
-            { role === 'business' ? 'Job Offer' : 'Post'}
+            { role === 'business' ? 'Tawaran Pekerjaan' : 'Post'}
           </Text>
           <Text style={{
             marginTop: 30,
@@ -132,7 +132,7 @@ const PostPage = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Title
+            Judul
           </Text>
           <Input
             style={{
@@ -151,7 +151,7 @@ const PostPage = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Description
+            Deskripsi
           </Text>
           <Input
             multiline={true}
@@ -174,7 +174,7 @@ const PostPage = () => {
               fontSize: 18,
               color: DarkColors["text-secondary"]
             }}>
-              Budget
+              Harga
             </Text>
             <View style={{flex: 1, flexDirection: 'row'}}>
             <Input
@@ -207,7 +207,7 @@ const PostPage = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Topics
+            Topik
           </Text>
           <View style={{
             marginTop: 4,
@@ -224,7 +224,7 @@ const PostPage = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Upload Media
+            Unggah Foto
           </Text>
           {!image ? <TouchableOpacity
             onPress={() => openImagePickerAsync()}
@@ -248,7 +248,7 @@ const PostPage = () => {
               fontSize: 16,
               padding: 8
             }}>
-              + Publish
+              + Terbitkan
             </Text>
           </TouchableOpacity>
           <View style={{height: 100}}></View>

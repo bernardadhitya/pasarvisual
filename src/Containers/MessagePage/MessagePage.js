@@ -43,7 +43,7 @@ const MessagePage = () => {
             fontSize: 16,
             padding: 8,
             textTransform: 'capitalize'
-          }}>{tabName}</Text>
+          }}>{tabName  === 'chat' ? 'Percakapan' : 'Tawaran'}</Text>
         </TouchableOpacity>
       </View>
       :

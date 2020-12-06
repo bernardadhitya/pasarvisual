@@ -38,7 +38,7 @@ const PageOne = () => {
               fontSize: 42
             }}
           >
-            Before
+            Sebelum
           </Text>
           <Text
             style={{
@@ -47,7 +47,7 @@ const PageOne = () => {
               fontSize: 42
             }}
           >
-            We Start...
+            Kita Mulai...
           </Text>
           <Text style={{
             marginTop: 30,
@@ -56,7 +56,7 @@ const PageOne = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Full Name
+            Nama Lengkap
           </Text>
           <Input style={{
             backgroundColor: DarkColors["sub-tertiary"],
@@ -105,14 +105,14 @@ const PageOne = () => {
             fontSize: 18,
             color: DarkColors["text-secondary"]
           }}>
-            Phone Number
+            Nomor Telepon
           </Text>
           <Input style={{
             backgroundColor: DarkColors["sub-tertiary"],
             borderColor: DarkColors["sub-tertiary"],
             color: DarkColors['text-primary']
           }}
-            placeholder="Insert phone number here..."
+            placeholder="Masukkan nomor telepon disini..."
           />
           <TouchableOpacity 
             style={{
@@ -130,7 +130,7 @@ const PageOne = () => {
               fontSize: 16,
               padding: 8
             }}>
-              Next
+              Selanjutnya
             </Text>
           </TouchableOpacity>
           <View style={{height: 200}}></View>
