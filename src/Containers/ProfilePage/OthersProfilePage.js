@@ -17,11 +17,9 @@ import { getUserById } from '../../../firebase';
 
 const OthersProfilePage = (props) => {
   const { userId, userName } = props.route.params;
-  console.log('props:', props);
   const otherUser = {
     userId, name: userName
   }
-  console.log('other user:', otherUser);
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
 

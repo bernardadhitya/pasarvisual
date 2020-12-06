@@ -30,9 +30,7 @@ const DiscoverPage = () => {
         fetchedPosts = await getAllDMPost();
       } else {
         fetchedPosts = await searchDmPostByTopics(selectedTopics);
-        console.log('fetched filtered posts --->', fetchedPosts);
       }
-      console.log('fetched posts: ', fetchedPosts.length);
       setPosts(fetchedPosts);
     }
     fetchData();

@@ -16,8 +16,6 @@ const ProfilePanel = (props) => {
   const { name } = user;
   let [fontsLoaded] = useFonts(Fonts);
 
-  console.log('name --->', name);
-
   const renderOthersOption = () => {
     return (
       <View style={styles.row}>
