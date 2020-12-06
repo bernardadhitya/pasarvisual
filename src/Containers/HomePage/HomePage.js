@@ -18,6 +18,7 @@ import { TouchableOpacity } from 'react-native';
 const HomePage = () => {
   const navigation = useNavigation();
   const [posts, setPosts] = useState([]);
+  const [selectedPost, setSelectedPost] = useState({});
   const [trigger, setTrigger] = useState(0);
   let [fontsLoaded] = useFonts(Fonts);
 
@@ -46,7 +47,10 @@ const HomePage = () => {
         <HomeCard
           role='creative'
           image={dataImage}
-          handleClick={() => sheetRef.current.snapTo(1)}
+          handleClick={() => {
+            setSelectedPost({image: dataImage, ...dataPost});
+            sheetRef.current.snapTo(1)
+          }}
           title={title}
           description={desc}
         />
@@ -55,6 +59,9 @@ const HomePage = () => {
   }
 
   const renderContent = () => {
+    if (!selectedPost) return;
+    console.log('selected post --->', selectedPost);
+    const {title, desc, topics, image} = selectedPost;
     return (
       <View
         style={{
@@ -63,7 +70,14 @@ const HomePage = () => {
           height: 700
         }}
       >
-        <CreativePostDetail role='creative' handleClick={viewProfile}/>
+        <CreativePostDetail
+          role='creative'
+          handleClick={viewProfile}
+          title={title}
+          description={desc}
+          topics={topics}
+          image={image}
+        />
       </View>
     )
   };
