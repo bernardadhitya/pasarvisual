@@ -19,11 +19,11 @@ export const fakeBusinessUser = {
 }
 
 export const fakeCreativeUser = {
-  email: 'vincent2@gmail.com',
-  name: 'vincent andreas subianto',
-  phoneNumber: '081208120812',
-  prefferedTopics: 'web design',
+  email: 'James_Hughes@gmail.com',
+  name: 'James Hughes',
+  phoneNumber: '08123456789',
+  prefferedTopics: ['Website', 'Desain Kemasan', 'Desain Poster'],
   profilePicture: 'designdigital.jpg',
   role: 'creative',
-  userId: '0lAWRlJnMdCRFh0TwVPJ',
+  userId: 'WVRgASco5rKhfWV6PyaB',
 }
