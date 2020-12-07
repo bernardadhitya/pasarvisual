@@ -44,7 +44,8 @@ const ProfilePanel = (props) => {
               color: DarkColors.primary,
               fontFamily: 'Bold',
               fontSize: 16,
-              padding: 8
+              paddingHorizontal: 8,
+              paddingTop: 8
             }}>Ikuti</Text>
           </TouchableOpacity>
         </View>
@@ -63,7 +64,8 @@ const ProfilePanel = (props) => {
               color: DarkColors.primary,
               fontFamily: 'Bold',
               fontSize: 16,
-              padding: 8
+              paddingHorizontal: 8,
+              paddingTop: 8
             }}>Pesan</Text>
           </TouchableOpacity>
         </View>
@@ -83,7 +85,8 @@ const ProfilePanel = (props) => {
               color: DarkColors.primary,
               fontFamily: 'Bold',
               fontSize: 16,
-              padding: 8
+              paddingHorizontal: 8,
+              paddingTop: 8
             }}>Layanan</Text>
           </TouchableOpacity>
         </View>
@@ -109,7 +112,8 @@ const ProfilePanel = (props) => {
               color: DarkColors.primary,
               fontFamily: 'Bold',
               fontSize: 16,
-              padding: 8
+              paddingHorizontal: 8,
+            paddingTop: 8, 
             }}>Edit Layanan</Text>
           </TouchableOpacity>
         </View>

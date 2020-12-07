@@ -30,18 +30,18 @@ const MessagePage = () => {
         <TouchableOpacity
           onPress={() => setSelectedTabName(tabName)} 
           style={{
-            backgroundColor: DarkColors.secondary,
+            backgroundColor: DarkColors.primary,
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: 15,
             borderRadius: 12
           }}
         >
           <Text style={{
-            color: DarkColors.primary,
+            color: DarkColors['white'],
             fontFamily: 'Bold',
             fontSize: 16,
-            padding: 8,
+            paddingHorizontal: 8,
+            paddingTop: 8, 
             textTransform: 'capitalize'
           }}>{tabName  === 'chat' ? 'Percakapan' : 'Tawaran'}</Text>
         </TouchableOpacity>
@@ -54,7 +54,6 @@ const MessagePage = () => {
             backgroundColor: DarkColors["sub-secondary"],
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: 15,
             borderRadius: 12
           }}
         >
@@ -62,9 +61,10 @@ const MessagePage = () => {
             color: DarkColors.primary,
             fontFamily: 'Bold',
             fontSize: 16,
-            padding: 8,
+            paddingHorizontal: 8,
+            paddingTop: 8, 
             textTransform: 'capitalize'
-          }}>{tabName}</Text>
+          }}>{tabName  === 'chat' ? 'Percakapan' : 'Tawaran'}</Text>
         </TouchableOpacity>
       </View>
   }
@@ -84,6 +84,16 @@ const MessagePage = () => {
         }}
       >
         <ScrollView style={{paddingHorizontal: 20, paddingTop: 50}}>
+          <Text
+            style={{
+              color: DarkColors["text-primary"],
+              fontFamily: 'Bold',
+              fontSize: 36,
+              marginBottom: 15
+            }}
+          >
+            Percakapan
+          </Text>
           <View style={styles.row}>
             {renderTabButtons('chat')}
             <View style={{width: 10}}></View>

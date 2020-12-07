@@ -39,7 +39,7 @@ const EditServicesPage = (props) => {
     return (
       <View
         style={{
-          backgroundColor: DarkColors["sub-primary"],
+          backgroundColor: DarkColors["background"],
           padding: 16,
           height: 700
         }}

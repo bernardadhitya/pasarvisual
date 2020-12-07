@@ -125,10 +125,11 @@ const PageOne = () => {
             onPress={() => navigation.navigate('PageTwo')}
           >
             <Text style={{
-              color: DarkColors["text-primary"],
+              color: DarkColors["white"],
               fontFamily: 'Bold',
               fontSize: 16,
-              padding: 8
+              paddingHorizontal: 8,
+              paddingTop: 8
             }}>
               Selanjutnya
             </Text>

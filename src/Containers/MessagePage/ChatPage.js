@@ -84,7 +84,7 @@ const ChatPage = (props) => {
               marginTop: 8,
               fonstFamily: 'Regular',
               fontSize: 21,
-              color:'white'
+              color: DarkColors['text-primary']
             }}>{name}</Text>
           </View>
           <ScrollView>

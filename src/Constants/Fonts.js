@@ -1,19 +1,13 @@
 export const Fonts = {
-  'Black': require('../Assets/fonts/SF-Pro-Display-Black.otf'),
-  'BlackItalic': require('../Assets/fonts/SF-Pro-Display-BlackItalic.otf'),
-  'Bold': require('../Assets/fonts/SF-Pro-Display-Bold.otf'),
-  'Heavy': require('../Assets/fonts/SF-Pro-Display-Heavy.otf'),
-  'HeavyItalic': require('../Assets/fonts/SF-Pro-Display-HeavyItalic.otf'),
-  'Light': require('../Assets/fonts/SF-Pro-Display-Light.otf'),
-  'LightItalic': require('../Assets/fonts/SF-Pro-Display-LightItalic.otf'),
-  'Medium': require('../Assets/fonts/SF-Pro-Display-Medium.otf'),
-  'MediumItalic': require('../Assets/fonts/SF-Pro-Display-MediumItalic.otf'),
-  'Regular': require('../Assets/fonts/SF-Pro-Display-Regular.otf'),
-  'RegularItalic': require('../Assets/fonts/SF-Pro-Display-RegularItalic.otf'),
-  'Semibold': require('../Assets/fonts/SF-Pro-Display-Semibold.otf'),
-  'SemiboldItalic': require('../Assets/fonts/SF-Pro-Display-SemiboldItalic.otf'),
-  'Thin': require('../Assets/fonts/SF-Pro-Display-Thin.otf'),
-  'ThinItalic': require('../Assets/fonts/SF-Pro-Display-ThinItalic.otf'),
-  'UltraLight': require('../Assets/fonts/SF-Pro-Display-Ultralight.otf'),
-  'UltralightItalic': require('../Assets/fonts/SF-Pro-Display-UltralightItalic.otf'),
+  'Bold': require('../Assets/fonts/Galano-Grotesque-Bold.otf'),
+  'Medium': require('../Assets/fonts/Galano-Grotesque-Medium.otf'),
+  'Regular': require('../Assets/fonts/Galano-Grotesque.otf'),
+  'Semibold': require('../Assets/fonts/Galano-Grotesque-Semi-Bold.otf'),
 }
+
+/*
+  semibold
+  bold
+  regular
+  medium
+*/

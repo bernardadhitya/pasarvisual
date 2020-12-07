@@ -1,13 +1,14 @@
 export const DarkColors = {
-  'primary': '#3ED598',
-  'secondary': '#286053',
-  'sub-primary': '#30444E',
-  'sub-secondary': '#1A282F',
-  'sub-tertiary': '#bac7cc',
-  'text-primary': '#FFFFFF',
-  'text-secondary': '#96A7AF',
-  'background': '#21333B',
+  'primary': '#FF974A',
+  'secondary': '#FFE9D9',
+  'sub-primary': '#FFE9D9',
+  'sub-secondary': '#FFE9D9',
+  'sub-tertiary': '#FFE9D9',
+  'text-primary': '#232323',
+  'text-secondary': '#696969',
+  'background': '#FFFFFF',
   'blue': '#0062FF',
-  'red': '#FF575F'
+  'red': '#FF575F',
+  'white': '#FFFFFF'
 }
 

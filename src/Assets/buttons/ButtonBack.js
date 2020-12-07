@@ -1,5 +1,6 @@
 import * as React from "react"
 import Svg, { G, Rect, Path } from "react-native-svg"
+import { DarkColors } from "../../Constants/Colors";
 /* SVGR has dropped some elements not supported by react-native-svg: title */
 
 const ButtonBack = (props) => {
@@ -18,11 +19,11 @@ const ButtonBack = (props) => {
           height={58}
           rx={12}
           transform="translate(0 .5)"
-          fill="#286053"
+          fill={DarkColors["sub-primary"]}
         />
         <Path
           d="M25.5 34L21 29.5m0 0l4.5-4.5M21 29.5h16"
-          stroke="#3DD598"
+          stroke={DarkColors.primary}
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"

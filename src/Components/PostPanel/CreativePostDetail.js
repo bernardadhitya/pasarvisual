@@ -25,10 +25,11 @@ const CreativePostDetail = (props) => {
       }}
     >
       <Text style={{
-        color: DarkColors["text-primary"],
+        color: DarkColors["white"],
         fontFamily: 'Bold',
         fontSize: 16,
-        padding: 8
+        paddingHorizontal: 8,
+        paddingTop: 8
       }}>
         { role === 'creative' ? 'Lihat Profil' : 'Pesan'}
       </Text>
@@ -48,7 +49,7 @@ const CreativePostDetail = (props) => {
       }}>
         {title}
       </Text>
-      <Image source={{ uri: image }} style={{height: 200}}/>
+      <Image source={{ uri: image }} style={{height: 200, borderRadius: 25}}/>
       <Text style={{
         marginTop: 15,
         fontFamily: 'Regular',
@@ -58,7 +59,6 @@ const CreativePostDetail = (props) => {
         Deskripsi
       </Text>
       <Text style={{
-        marginTop: 15,
         fontFamily: 'Regular',
         fontSize: 14,
         color: DarkColors["text-primary"],

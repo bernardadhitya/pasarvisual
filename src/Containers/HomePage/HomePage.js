@@ -27,7 +27,10 @@ const HomePage = () => {
 
   const viewProfile = () => {
     sheetRef.current.snapTo(2);
-    navigation.navigate('OtherProfileScreen');
+    navigation.navigate('OtherProfileScreen', {
+      userId: selectedPost.userId,
+      userName: selectedPost.userName
+    });
   }
 
   useEffect(() => {
@@ -65,7 +68,7 @@ const HomePage = () => {
     return (
       <View
         style={{
-          backgroundColor: DarkColors["sub-primary"],
+          backgroundColor: DarkColors["background"],
           padding: 16,
           height: 700
         }}
@@ -128,7 +131,7 @@ const HomePage = () => {
               style={{
                 color: DarkColors["text-primary"],
                 fontFamily: 'Bold',
-                fontSize: 42
+                fontSize: 36
               }}
             >
               Beranda

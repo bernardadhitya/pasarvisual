@@ -10,6 +10,7 @@ import Svg, {
   Text,
   TSpan,
 } from "react-native-svg"
+import { DarkColors } from "../../Constants/Colors";
 /* SVGR has dropped some elements not supported by react-native-svg: title */
 
 const ButtonUpload = (props) => {
@@ -38,12 +39,12 @@ const ButtonUpload = (props) => {
         </Mask>
       </Defs>
       <G fill="none" fillRule="evenodd">
-        <Circle fill="#286053" cx={75} cy={70} r={30} />
-        <Circle fill="#3ED598" cx={75} cy={70} r={24} />
+        <Circle fill={DarkColors.secondary} cx={75} cy={70} r={30} />
+        <Circle fill={DarkColors.primary} cx={75} cy={70} r={24} />
         <Use
-          stroke="#286053"
+          stroke={DarkColors.primary}
           mask="url(#prefix__b)"
-          strokeWidth={2}
+          strokeWidth={4}
           strokeDasharray="6,6"
           xlinkHref="#prefix__a"
         />
@@ -55,7 +56,7 @@ const ButtonUpload = (props) => {
         <Text
           fontSize={14}
           fontWeight={500}
-          fill="#3ED598"
+          fill={DarkColors.primary}
         >
           <TSpan x={32.949} y={122}>
             {"Add new item"}

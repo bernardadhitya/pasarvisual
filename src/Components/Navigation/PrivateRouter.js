@@ -116,11 +116,11 @@ const PrivateRouter = () => {
         inactiveTintColor: "#323232"
       }}
       appearence={{
-        activeTabBackgrounds: '#3DD598',
+        activeTabBackgrounds: DarkColors['primary'],
         activeColors: '#FFFFFF',
         shadow: true,
         whenActiveShow: 'icon-only',
-        tabBarBackground: DarkColors['sub-primary'],
+        tabBarBackground: DarkColors['background'],
       }}
     >
       <Tabs.Screen

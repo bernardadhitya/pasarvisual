@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, View, StyleSheet } from 'react-native';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
@@ -11,10 +11,33 @@ import ButtonUpload from '../../Assets/buttons/ButtonUpload';
 import { TouchableOpacity } from 'react-native';
 import ButtonBack from '../../Assets/buttons/ButtonBack';
 import { useNavigation } from '@react-navigation/native';
+import { Topics } from '../../Constants/Topics';
 
 const PageThree = () => {
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts(Fonts);
+  const [topics, setTopics] = useState([]);
+
+  const handleTopicClicked = (topic) => {
+    if (!(topics.includes(topic))) {
+      setTopics([...topics, topic]);
+    } else {
+      setTopics(topics.filter(currentTopic => currentTopic !== topic))
+    }
+  }
+
+  const renderTopicsCards = () => {
+    return Topics.map(topic => {
+      return (
+        <TouchableOpacity onPress={() => handleTopicClicked(topic)}>
+          <TopicCard
+            topic={topic}
+            selected={topics.includes(topic)}
+          />
+        </TouchableOpacity>
+      )
+    })
+  }
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -64,10 +87,7 @@ const PageThree = () => {
             justifyContent: 'flex-start',
             flexWrap: 'wrap'
           }}>
-            <TopicCard topic='Foto Produk'/>
-            <TopicCard topic='Video Promosi'/>
-            <TopicCard topic='Desain Poster'/>
-            <TopicCard topic='Desain Kemasan'/>
+            { renderTopicsCards() }
           </View>
           <TouchableOpacity 
             style={{
@@ -80,10 +100,11 @@ const PageThree = () => {
             onPress={() => navigation.navigate('Login')}
           >
             <Text style={{
-              color: DarkColors["text-primary"],
+              color: DarkColors["white"],
               fontFamily: 'Bold',
               fontSize: 16,
-              padding: 8
+              paddingHorizontal: 8,
+              paddingTop: 8
             }}>
               Selesai
             </Text>

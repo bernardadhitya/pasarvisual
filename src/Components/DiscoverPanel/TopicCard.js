@@ -14,7 +14,9 @@ const TopicCard = (props) => {
   const renderTopicCard = () => {
     return !selected ? <View style={{
       backgroundColor: DarkColors["sub-primary"],
-      padding: 10,
+      paddingHorizontal: 10,
+      paddingTop: 10,
+      paddingBottom: 2,
       borderRadius: 10,
       marginBottom: 10,
       marginRight: 10
@@ -27,14 +29,16 @@ const TopicCard = (props) => {
       </Text>
     </View> : <View style={{
       backgroundColor: DarkColors["primary"],
-      padding: 10,
+      paddingHorizontal: 10,
+      paddingTop: 10,
+      paddingBottom: 2,
       borderRadius: 10,
       marginBottom: 10,
       marginRight: 10
     }}>
       <Text style={{
         fontFamily: 'Semibold',
-        color: DarkColors["text-primary"]
+        color: DarkColors["white"]
       }}>
         { topic }
       </Text>

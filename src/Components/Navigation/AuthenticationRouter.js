@@ -14,6 +14,7 @@ import PageOne from "../../Containers/RegisterPage/PageOne";
 import PageTwo from "../../Containers/RegisterPage/PageTwo";
 import PageThree from "../../Containers/RegisterPage/PageThree";
 import { fakeBusinessUser, fakeCreativeUser } from "../../Constants/Users";
+import { Image } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,10 @@ const Login = () => {
       justifyContent: "center",
       backgroundColor: DarkColors.background
     }}>
+      <Image
+        source={require('../../Assets/images/pasarvisual-logo.png')}
+        style={{width: 320, height: 60, marginBottom: 25}}
+      />
       <View style={{width: 300}}>
         <Input
           style={{
@@ -74,7 +79,6 @@ const Login = () => {
           borderRadius: 10,
           paddingHorizontal: 10,
           paddingTop: 10,
-          paddingBottom: 10,
           alignItems: 'center'
         }}
         onPress={() => {checkLogin()}}
@@ -83,7 +87,7 @@ const Login = () => {
           style={{
             fontFamily: 'Bold',
             fontSize: 16,
-            color: DarkColors["text-primary"]
+            color: DarkColors["white"]
           }}
         >
           Masuk
@@ -91,7 +95,7 @@ const Login = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={{
-          backgroundColor: DarkColors["secondary"],
+          backgroundColor: DarkColors["white"],
           marginVertical: 4,
           width: 277,
           borderRadius: 10,
@@ -103,7 +107,7 @@ const Login = () => {
         onPress={() => {navigation.navigate('PageOne')}}
       >
         <Text style={{
-          fontFamily: 'Medium', fontSize: 16, color: DarkColors['primary']
+          fontFamily: 'Medium', fontSize: 14, color: DarkColors['primary']
         }}>
           Belum ada akun, daftarkan saya!
         </Text>

@@ -46,7 +46,7 @@ const DiscoverPage = () => {
     return (
       <View
         style={{
-          backgroundColor: DarkColors["sub-primary"],
+          backgroundColor: DarkColors["background"],
           padding: 16,
           height: 700
         }}
@@ -102,6 +102,16 @@ const DiscoverPage = () => {
           borderRadius={16}
         />
         <ScrollView style={{paddingHorizontal: 20, paddingTop: 50}}>
+          <Text
+            style={{
+              color: DarkColors["text-primary"],
+              fontFamily: 'Bold',
+              fontSize: 36,
+              marginBottom: 15
+            }}
+          >
+            Pencarian
+          </Text>
           <ScrollView horizontal>
             {Topics.map(topic => {
               return(

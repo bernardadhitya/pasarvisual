@@ -65,7 +65,7 @@ const PageTwo = () => {
                 source={require('../../Assets/images/role_kreatif.png')}
                 style={{
                   width: 150,
-                  height: 200,
+                  height: 220,
                   backgroundColor: DarkColors.primary,
                   borderRadius: 25,
                   marginRight: 25
@@ -77,7 +77,7 @@ const PageTwo = () => {
                 source={require('../../Assets/images/role_bisnis.png')}
                 style={{
                   width: 150,
-                  height: 200,
+                  height: 220,
                   backgroundColor: DarkColors.primary,
                   borderRadius: 25,
                   marginRight: 25
@@ -96,10 +96,11 @@ const PageTwo = () => {
             onPress={() => navigation.navigate('PageThree')}
           >
             <Text style={{
-              color: DarkColors["text-primary"],
+              color: DarkColors["white"],
               fontFamily: 'Bold',
               fontSize: 16,
-              padding: 8
+              paddingHorizontal: 8,
+              paddingTop: 8
             }}>
               Lanjut
             </Text>
