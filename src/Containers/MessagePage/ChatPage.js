@@ -9,6 +9,7 @@ import { TouchableOpacity } from 'react-native';
 import ButtonBack from '../../Assets/buttons/ButtonBack';
 import { Input } from '@ui-kitten/components';
 import IconSend from '../../Assets/icons/IconSend';
+import IconVideo from '../../Assets/icons/IconVideo';
 import { useNavigation } from '@react-navigation/native';
 
 const ChatPage = (props) => {
@@ -28,7 +29,7 @@ const ChatPage = (props) => {
           borderBottomLeftRadius: 15,
           maxWidth: 200,
         }}>
-          <Text style={{textAlign: 'right'}}>
+          <Text style={{textAlign: 'right', color: DarkColors.white}}>
             { message }
           </Text>
         </View>
@@ -82,7 +83,7 @@ const ChatPage = (props) => {
             <View style={{width: 15}}></View>
             <Text style={{
               marginTop: 8,
-              fonstFamily: 'Regular',
+              fontFamily: 'Semibold',
               fontSize: 21,
               color: DarkColors['text-primary']
             }}>{name}</Text>
@@ -110,6 +111,15 @@ const ChatPage = (props) => {
               paddingLeft: 8
             }}>
               <IconSend/>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {navigation.navigate('VideoCallScreen')}}
+              style={{
+                paddingTop: 10,
+                paddingLeft: 15
+              }}
+            >
+              <IconVideo/>
             </TouchableOpacity>
           </View>
         </View>

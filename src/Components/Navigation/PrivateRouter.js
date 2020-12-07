@@ -19,6 +19,7 @@ import EditServicesPage from "../../Containers/ServicesPage/EditServicesPage";
 import MessagePage from "../../Containers/MessagePage/MessagePage";
 import ChatPage from "../../Containers/MessagePage/ChatPage";
 import ProfileSettingPage from "../../Containers/ProfilePage/ProfileSettingPage";
+import VideoCallPage from "../../Containers/MessagePage/VideoCallPage";
 
 const Tabs = AnimatedTabBarNavigator();
 const Stack = createStackNavigator();
@@ -102,6 +103,10 @@ const MessageRouter = () => {
       <Stack.Screen
         name="ChatScreen"
         component={ChatPage}
+      />
+      <Stack.Screen
+        name="VideoCallScreen"
+        component={VideoCallPage}
       />
     </Stack.Navigator>
   )
