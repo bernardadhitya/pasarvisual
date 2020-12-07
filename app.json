@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Homerooom",
-    "slug": "Homerooom",
+    "name": "PasarVisual",
+    "slug": "pasar-visual",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/Assets/icon.png",

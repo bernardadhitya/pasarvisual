@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContext } from "../../Helper/AuthProvider";
 import Center from "../Center/Center";
@@ -7,7 +7,7 @@ import { useFonts } from '@use-expo/font';
 import { Fonts } from '../../Constants/Fonts';
 import { AppLoading } from 'expo';
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Alert } from "react-native";
 import { Input } from "@ui-kitten/components";
 import { DarkColors } from "../../Constants/Colors";
 import PageOne from "../../Containers/RegisterPage/PageOne";
@@ -22,6 +22,7 @@ const Login = () => {
   const navigation = useNavigation();
   const { loginAsCreative, loginAsBusiness } = useContext(AuthContext);
   let [fontsLoaded] = useFonts(Fonts);
+  const [ hasBeenCalled, setHasBeenCalled ] = useState(false);
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -34,6 +35,19 @@ const Login = () => {
     }
   }
 
+  const createAlert = () => {
+    if (hasBeenCalled) return;
+    setHasBeenCalled(true);
+    return Alert.alert(
+      "Keterangan",
+      "Untuk juri, silahkan login dengan email 'harvey.ward@gmail.com' dan password 'harveyward'",
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
+  }
+
   return fontsLoaded ? (
     <View style={{
       flex: 1,
@@ -41,6 +55,7 @@ const Login = () => {
       justifyContent: "center",
       backgroundColor: DarkColors.background
     }}>
+      { createAlert() }
       <Image
         source={require('../../Assets/images/pasarvisual-logo.png')}
         style={{width: 320, height: 60, marginBottom: 25}}

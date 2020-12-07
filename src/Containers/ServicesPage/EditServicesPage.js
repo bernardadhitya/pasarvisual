@@ -129,7 +129,7 @@ const EditServicesPage = (props) => {
             sheetRef.current.snapTo(1);
           }}
           overrideWithAction={true}
-          color='#3ED598'
+          color={DarkColors.primary}
           shadow={{
             shadowColor: "#000",
             shadowOffset: {

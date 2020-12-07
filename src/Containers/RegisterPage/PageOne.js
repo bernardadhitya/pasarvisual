@@ -63,7 +63,7 @@ const PageOne = () => {
             borderColor: DarkColors["sub-tertiary"],
             color: DarkColors['text-primary']
           }}
-            placeholder="Insert title here..."
+            placeholder="Masukkan nama anda..."
           />
           <Text style={{
             marginTop: 15,
@@ -79,7 +79,7 @@ const PageOne = () => {
             borderColor: DarkColors["sub-tertiary"],
             color: DarkColors['text-primary']
           }}
-            placeholder="Insert email here..."
+            placeholder="Masukkan email anda..."
           />
           <Text style={{
             marginTop: 15,
@@ -96,7 +96,7 @@ const PageOne = () => {
             color: DarkColors['text-primary']
           }}
             secureTextEntry={true}
-            placeholder="Insert password here..."
+            placeholder="Masukkan password anda..."
           />
           <Text style={{
             marginTop: 15,
