@@ -91,7 +91,7 @@ const ChatCard = (props) => {
               }}>
                 <Text
                   style={{
-                    color: DarkColors["text-primary"],
+                    color: DarkColors["white"],
                     fontFamily: 'Bold',
                     fontSize: 10
                   }}
