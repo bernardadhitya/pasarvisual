@@ -23,6 +23,14 @@ const DiscoverPage = () => {
   let [fontsLoaded] = useFonts(Fonts);
   const [selectedPost, setSelectedPost] = useState(null);
 
+  const viewProfile = () => {
+    sheetRef.current.snapTo(2);
+    navigation.navigate('OtherProfileScreen', {
+      userId: selectedPost.userId,
+      userName: selectedPost.userName
+    });
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       let fetchedPosts;
@@ -48,12 +56,12 @@ const DiscoverPage = () => {
         style={{
           backgroundColor: DarkColors["background"],
           padding: 16,
-          height: 700
+          height: 500
         }}
       >
         <CreativePostDetail
           role='creative'
-          handleClick={() => {}}
+          handleClick={() => {viewProfile}}
           title={title}
           description={desc}
           topics={topics}
@@ -97,7 +105,7 @@ const DiscoverPage = () => {
           ref={sheetRef}
           initialSnap={2}
           callbackNode={fall}
-          snapPoints={[700, 600, -100]}
+          snapPoints={[500, 400, -100]}
           renderContent={renderContent}
           borderRadius={16}
         />

@@ -101,31 +101,13 @@ const HomeCard = (props) => {
             { title }
           </Text> : null}
         </View>
-        <View style={styles.column, {alignSelf: 'flex-end'}}>
-          <View style={styles.row}>
-            { role === 'creative' ?
-              <>
-                <IconHeart/>
-                <View style={{width: 5}}></View>
-                <Text
-                  style={{
-                    color: DarkColors["text-secondary"],
-                    fontFamily: 'Regular',
-                    fontSize: 18
-                  }}
-                >
-                  40
-                </Text>
-              </> : null
-            }
-          </View>
-        </View>
       </View>
       <Text
         style={{
           color: DarkColors["text-secondary"],
           fontFamily: 'Regular',
-          fontSize: 16
+          fontSize: 14,
+          marginTop: 15
         }}
       >
         { description }

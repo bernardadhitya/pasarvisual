@@ -29,6 +29,7 @@ const CreativePostDetail = (props) => {
         fontFamily: 'Bold',
         fontSize: 16,
         paddingHorizontal: 8,
+        paddingBottom: 8,
         paddingTop: 8
       }}>
         { role === 'creative' ? 'Lihat Profil' : 'Pesan'}

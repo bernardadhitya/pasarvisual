@@ -57,6 +57,7 @@ const OffersCard = (props) => {
             }}>
               <View style={{
                 paddingHorizontal: 8,
+                paddingBottom: 4,
                 paddingTop: 4,
                 borderRadius: 12
               }}>

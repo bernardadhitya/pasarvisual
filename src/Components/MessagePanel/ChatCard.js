@@ -48,6 +48,7 @@ const ChatCard = (props) => {
             }}>
               <View style={{
                 paddingHorizontal: 8,
+                paddingBottom: 4,
                 paddingTop: 4,
                 borderRadius: 12
               }}>
@@ -82,6 +83,7 @@ const ChatCard = (props) => {
             }}>
               <View style={{
                 paddingHorizontal: 8,
+                paddingBottom: 4,
                 paddingTop: 4,
                 backgroundColor: DarkColors.primary,
                 borderRadius: 12,

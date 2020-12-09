@@ -86,28 +86,28 @@ const Login = () => {
         />
       </View>
       <View style={{height: 30}}></View>
-      <TouchableOpacity
-        style={{
-          backgroundColor: DarkColors.primary,
-          marginVertical: 4,
-          width: 277,
-          borderRadius: 10,
-          paddingHorizontal: 10,
-          paddingTop: 10,
-          alignItems: 'center'
-        }}
-        onPress={() => {checkLogin()}}
-      >
-        <Text
-          style={{
-            fontFamily: 'Bold',
-            fontSize: 16,
-            color: DarkColors["white"]
-          }}
-        >
-          Masuk
-        </Text>
-      </TouchableOpacity>
+      <TouchableOpacity 
+      onPress={() => checkLogin()}
+      style={{
+        width: 277,
+        backgroundColor: DarkColors.primary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 15,
+        borderRadius: 12
+      }}
+    >
+      <Text style={{
+        color: DarkColors["white"],
+        fontFamily: 'Bold',
+        fontSize: 16,
+        paddingHorizontal: 8,
+        paddingBottom: 8,
+        paddingTop: 8
+      }}>
+        Masuk
+      </Text>
+    </TouchableOpacity>
       <TouchableOpacity
         style={{
           backgroundColor: DarkColors["white"],
@@ -115,6 +115,7 @@ const Login = () => {
           width: 277,
           borderRadius: 10,
           paddingHorizontal: 10,
+          paddingBottom: 10,
           paddingTop: 10,
           paddingBottom: 10,
           alignItems: 'center'
@@ -225,6 +226,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     paddingHorizontal: 10,
+    paddingBottom: 16,
     paddingTop: 16,
     paddingBottom: 6,
     alignItems: 'center'
@@ -242,6 +244,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#63C7FD',
     borderRadius: 10,
     paddingHorizontal: 10,
+    paddingBottom: 16,
     paddingTop: 16,
     paddingBottom: 6,
     alignItems: 'center'

@@ -90,20 +90,21 @@ const PageThree = () => {
             { renderTopicsCards() }
           </View>
           <TouchableOpacity 
+            onPress={() => navigation.navigate('Login')}
             style={{
               backgroundColor: DarkColors.primary,
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: 30,
+              marginTop: 15,
               borderRadius: 12
             }}
-            onPress={() => navigation.navigate('Login')}
           >
             <Text style={{
               color: DarkColors["white"],
               fontFamily: 'Bold',
               fontSize: 16,
               paddingHorizontal: 8,
+              paddingBottom: 8,
               paddingTop: 8
             }}>
               Selesai

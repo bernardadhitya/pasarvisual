@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./src/Assets/icon.png",
     "splash": {
-      "image": "./src/Assets/splash.png",
+      "image": "./src/Assets/images/pasarvisual-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

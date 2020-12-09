@@ -29,7 +29,7 @@ const ViewServicesPage = (props) => {
         style={{
           backgroundColor: DarkColors["background"],
           padding: 16,
-          height: 600
+          height: 400
         }}
       >
         <ScrollView style={{paddingHorizontal: 20, paddingTop: 50}}>
@@ -134,7 +134,7 @@ const ViewServicesPage = (props) => {
           ref={sheetRef}
           initialSnap={2}
           callbackNode={fall}
-          snapPoints={[600, 500, -100]}
+          snapPoints={[400, 300, -100]}
           renderContent={renderContent}
           borderRadius={16}
         />

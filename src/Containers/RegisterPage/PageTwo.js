@@ -64,8 +64,8 @@ const PageTwo = () => {
               <Image
                 source={require('../../Assets/images/role_kreatif.png')}
                 style={{
-                  width: 150,
-                  height: 220,
+                  width: 120,
+                  height: 200,
                   backgroundColor: DarkColors.primary,
                   borderRadius: 25,
                   marginRight: 25
@@ -76,8 +76,8 @@ const PageTwo = () => {
               <Image
                 source={require('../../Assets/images/role_bisnis.png')}
                 style={{
-                  width: 150,
-                  height: 220,
+                  width: 120,
+                  height: 200,
                   backgroundColor: DarkColors.primary,
                   borderRadius: 25,
                   marginRight: 25
@@ -86,23 +86,24 @@ const PageTwo = () => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity 
+            onPress={() => navigation.navigate('PageThree')}
             style={{
               backgroundColor: DarkColors.primary,
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: 30,
+              marginTop: 15,
               borderRadius: 12
             }}
-            onPress={() => navigation.navigate('PageThree')}
           >
             <Text style={{
               color: DarkColors["white"],
               fontFamily: 'Bold',
               fontSize: 16,
               paddingHorizontal: 8,
+              paddingBottom: 8,
               paddingTop: 8
             }}>
-              Lanjut
+              Selanjutnya
             </Text>
           </TouchableOpacity>
           <View style={{height: 200}}></View>

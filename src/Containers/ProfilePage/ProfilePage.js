@@ -34,7 +34,7 @@ const ProfilePage = () => {
         style={{
           backgroundColor: DarkColors["background"],
           padding: 16,
-          height: 700
+          height: 500
         }}
       >
         <CreativePostDetail
@@ -82,7 +82,7 @@ const ProfilePage = () => {
           ref={sheetRef}
           initialSnap={2}
           callbackNode={fall}
-          snapPoints={[700, 600, -100]}
+          snapPoints={[500, 400, -100]}
           renderContent={renderContent}
           borderRadius={16}
         />

@@ -41,6 +41,7 @@ const MessagePage = () => {
             fontFamily: 'Bold',
             fontSize: 16,
             paddingHorizontal: 8,
+            paddingBottom: 8,
             paddingTop: 8, 
             textTransform: 'capitalize'
           }}>{tabName  === 'chat' ? 'Percakapan' : 'Tawaran'}</Text>
@@ -62,6 +63,7 @@ const MessagePage = () => {
             fontFamily: 'Bold',
             fontSize: 16,
             paddingHorizontal: 8,
+            paddingBottom: 8,
             paddingTop: 8, 
             textTransform: 'capitalize'
           }}>{tabName  === 'chat' ? 'Percakapan' : 'Tawaran'}</Text>

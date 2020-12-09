@@ -247,6 +247,7 @@ const PostPage = () => {
               fontFamily: 'Bold',
               fontSize: 16,
               paddingHorizontal: 8,
+              paddingBottom: 8,
               paddingTop: 8
             }}>
               + Terbitkan

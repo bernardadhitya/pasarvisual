@@ -16,7 +16,7 @@ const TopicCard = (props) => {
       backgroundColor: DarkColors["sub-primary"],
       paddingHorizontal: 10,
       paddingTop: 10,
-      paddingBottom: 2,
+      paddingBottom: 10,
       borderRadius: 10,
       marginBottom: 10,
       marginRight: 10
@@ -30,8 +30,8 @@ const TopicCard = (props) => {
     </View> : <View style={{
       backgroundColor: DarkColors["primary"],
       paddingHorizontal: 10,
+      paddingBottom: 10,
       paddingTop: 10,
-      paddingBottom: 2,
       borderRadius: 10,
       marginBottom: 10,
       marginRight: 10
