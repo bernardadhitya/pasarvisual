@@ -1,5 +1,7 @@
 ![](src/Assets/images/pasarvisual-logo.png)
 
+> 🏆🏅🏆 Juara Favorit at BINUS Hackathon 2020 by BINUS University 🏆🏅🏆
+
 ### 💡 About the App
 The SME sector plays a very important role because it has a huge influence on the wheels of the Indonesian economy. Minister of Cooperatives and SMEs Teten Masduki said that 60% of the national Gross Domestic Product is supported by the MSME sector and absorbs 97% of the total workforce.
 
